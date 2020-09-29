@@ -1,0 +1,84 @@
+@import "theme";
+.upcoming, .completed{
+  h3{
+    color: rgb(19, 18, 18);
+    margin-left: 1rem;
+  }
+}
+#profile{
+  color: gray;
+}
+#button-flex{
+  button{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: fit-content;
+    align-self: center;
+  }
+}
+#appointments{
+  color: #0568aa;
+}
+.upcoming, .completed{
+  overflow-y: scroll;
+  padding: 1rem 1rem 0 1rem;
+}
+.schedule-container{
+  padding-top: 0.5rem;
+  padding-bottom: 0.1rem;
+  align-content: center;
+  form{
+    margin: 0;
+    padding: 0;
+  }
+  
+}
+.day{
+  width: 6rem;
+  margin-left: 0.1rem;
+  margin-right: 1rem;
+  align-self: center;
+}
+.slot-details{
+  .hdetails{
+    font-size: 1rem;
+    
+  }
+  
+  .dname{
+    color: $bright-blue;
+    margin-bottom: 0.1rem;
+  }
+  
+  .htime{
+    margin-top: 0.2rem;
+  }
+  .confirmed{
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    color: green;
+    background-color: lightgreen;
+    width: fit-content;
+    border-radius: 3rem;
+  }
+  .confirm{
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    color: red;
+    background-color: rgb(240, 172, 172);
+    width: fit-content;
+    border-radius: 3rem;
+  }
+}
+.noapp{
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+  h3{
+    color: $dark-blue;
+  }
+}
+.schedule{
+  grid-template-columns: max-content 50% auto;
+  margin-bottom: 0.5rem;
+}

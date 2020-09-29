@@ -1,0 +1,74 @@
+@import "theme";
+#users {
+  color: $bright-blue;
+}
+.adminCancel:hover{
+  cursor: pointer;
+}
+#doctors {
+  color: gray;
+}
+#hospitals{
+  color: gray;
+}
+#settings {
+  color: gray;
+}
+
+#dashboard {
+  color: gray;
+}
+.doc-grid{
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 0.5rem;
+  padding-right: 1rem;
+  .doc-details{
+    border: 1px solid rgba($color: #000000, $alpha: .3);
+    height: fit-content;
+    position: relative;
+    margin-bottom: 0.5rem;
+    .controls{
+      position: absolute;
+      top: 0.4rem;
+      left: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      a{
+        div{
+        background-color: rgb(37, 58, 116);
+        border-radius: 60%;
+        padding: 0.3rem;
+        width: fit-content;
+        }
+        &:hover{
+          cursor: pointer;
+        }
+      }
+      
+      ul{
+        li{
+          padding-left: 0;
+          border: 1px solid rgba($color: #000000, $alpha: .2);
+          background-color: #fffff727;
+          margin: 0;
+          
+          color: $bright-blue;
+          font-family: 'nexa-bold';
+        }
+      }
+    }
+    img{
+      height: 15rem;
+      width: 100%;
+    }
+    li{
+      display: flex;
+      justify-content: flex-start;
+      i{
+        color: $bright-blue;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}

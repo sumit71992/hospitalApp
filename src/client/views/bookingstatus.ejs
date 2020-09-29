@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/bookappointment.css">
+  <link rel="stylesheet" href="/status.css">
+  <link rel="stylesheet" href="/theme.css">
+  <title>Booking Status</title>
+</head>
+
+<body>
+  <%- include ("headers") -%>
+  <%- include ("toaster") -%>
+  <div class="container">
+    <div class="slot_details">
+      <h3>In Clinic Appointment</h3>
+      <hr>
+      <div class="appointment_details">
+        <div id="date">
+          <i class="far fa-calendar-plus"></i>
+          <div> On <span>
+              <%var doa=new Date(user.appointmentDetails.dateOfAppointment).toUTCString();%>
+              <%=doa.split(" ")[0]+" "+doa.split(" ")[1]+" "+doa.split(" ")[2]+" "+doa.split(" ")[3]%>
+            </span></div>
+        </div>
+        <div id="time">
+          <i class="far fa-clock"></i>
+          <div>At <span><%=user.appointmentDetails.bookingSubSchedule.startTime%></span></div>
+        </div>
+      </div>
+      <a href="/doctors">Change date and time</a>
+      <div class="doctor_details">
+        <div class="image_wrapper">
+          <img src="/uploads/<%=user.appointmentDetails.dInfo.Image%>" alt="doc pic">
+        </div>
+        <div class="specifications">
+          <ul>
+            <li class="name"><%=user.appointmentDetails.dInfo.name%></li>
+            <li><%=user.appointmentDetails.dInfo.doctorData.hospitals%></li>
+            <li>
+              <%=user.appointmentDetails.dInfo.doctorData.qualifications%>
+            </li>
+            <li>
+              <%=user.appointmentDetails.dInfo.doctorData.speciality%>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="hospital_details">
+        <div class="image_wrapper">
+          <img src="https://cdn0.iconfinder.com/data/icons/health-icons-rounded/110/Hospital-512.png"
+            alt="hospital pic">
+        </div>
+        <div class="specifications">
+          <ul>
+            <li class="name"><%=user.appointmentDetails.appointmentSchedule.hospital%></li>
+            <li>NA</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="user-details">
+      
+      <div class="status">
+        
+        <div class="confirm">
+          <i class="fas fa-check-circle"></i>
+          <h3>Appointment Confirmed</h3>
+        </div>
+        <p>We have sent you an sms with the details</p>
+        <div class="pDetails">
+          <label>Patient Name</label>
+          <span><%=user.currentAppDetails.patientName%></span>
+          <label>Mobile</label>
+          <span><%=user.currentAppDetails.pMobileNumber%></span>
+        </div>
+        <div class="link">
+          <button onclick="showDialog()" type="reset"> Cancel Appointment</button>
+          <button onclick="window.location.href='/reschedule/<%=user.currentAppDetails._id%>'">Reschedule Appointment</button>
+        </div>
+      
+      </div>
+      <form action="/cancel/<%=user.currentAppDetails._id%>" method="POST">
+      <div class="confirmationBox">
+        <div class="cancelConfirmationBox">
+          <h3>Cancel Appointment</h3>
+          <h4>Are you sure you want to cancel your appointment?</h4>
+          <div class="buttons">
+            <button class="yes" type="submit">Yes</button>
+            <button class="no" onclick="showDialog()" type="reset">No</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+    <script>
+      async function showDialog() {
+        if (document.querySelector(".confirmationBox").style.display == "flex")
+          document.querySelector(".confirmationBox").style.display = "none";
+        else
+          document.querySelector(".confirmationBox").style.display = "flex";
+      }
+      
+    </script>
+</body>
+
+</html>

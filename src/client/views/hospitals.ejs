@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/doctor.css">
+    <link rel="stylesheet" href="/theme.css">
+    <title>Hospitals</title>
+</head>
+
+<body>
+    <%- include("headers")-%>
+    <div class="find-section1">
+
+        <h3>Hospitals in <a href="#">Delhi</a></h3>
+    </div>
+    <div class="desktop-view">
+        <div class="doc-header">
+            <h4>Home/Hospital List</h4>
+            <select id="sort-by" name="sort">
+                <option value="">Sort By</option>
+            </select>
+        </div>
+
+        <div class="grid-container">
+            <div class="hospital-filters filters">
+                <div id="filter-by">Filter By</div>
+                <div class="specification">
+                    <div class="grid">
+                        <h4>Location</h4>
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment1" id="treatment1" value="DLF Cyber City">
+                        <label for="treatment1">DLF Cyber City</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment2" id="treatment2" value="Dwarka">
+                        <label for="treatment2">Dwarka</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment3" id="treatment3" value="Lajpat Nagar">
+                        <label for="treatment3">Lajpat Nagar</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment4" id="treatment4" value="Palam Vihar">
+                        <label for="treatment4">Palam Vihar</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment5" id="treatment5" value="Punjabi Baag">
+                        <label for="treatment5">Punjabi Baag</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="treatment6" id="treatment6" value="Pusa Road">
+                        <label for="treatment6">Pusa Road</label>
+                    </div>
+                    <label id="show">+Show more</label>
+                    <hr>
+                </div>
+                <div class="specification">
+                    <div class="grid">
+                        <h4>Department</h4>
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location1" id="location1" value="Multi Organ Transplant">
+                        <label for="location">Multi Organ Transplant</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location2" id="location2" value="Orthopedic Surgery">
+                        <label for="location2">Orthopedic Surgery</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location3" id="location3" value="Infertility Treatment">
+                        <label for="location3">Infertility Treatment</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location4" id="location4" value="Dentistry">
+                        <label for="location4">Dentistry</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location5" id="location5" value="Cardiology">
+                        <label for="location5">Cardiology</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="location6" id="location6" value="Cancer">
+                        <label for="location6">Cancer</label>
+                    </div>
+
+                    <label id="show">+Show more</label>
+                    <hr>
+                </div>
+                <div class="specification">
+                    <div class="grid">
+                        <h4>Treatment</h4>
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department1" id="department1" value="Multi Organ Transplant">
+                        <label for="department">Department 1</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department2" id="department2" value="Orthopedic Surgery">
+                        <label for="department2">Department 2</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department3" id="department3" value="Infertility Treatment">
+                        <label for="department3">Department 3</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department4" id="department4" value="Dentistry">
+                        <label for="department4">Department 4</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department5" id="department5" value="Cardiology">
+                        <label for="department5">Department 5</label>
+                    </div>
+                    <div class="filter-flex">
+                        <input type="checkbox" name="department6" id="department6" value="Cancer">
+                        <label for="department6">Department 6</label>
+                    </div>
+
+                    <label id="show">+Show more</label>
+                    <hr>
+                </div>
+            </div>
+            <div class="doctors-grid hospital-grid">
+                <%for(var i=0;i<user.allHospitals.length;i++){%>
+                <div class="doc-details doc-div-style hospital-div-style">
+                    <div class="details-grid hospital-details-grid">
+                        <h4 class="name"><%=user.allHospitals[i].name%></h4>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="doc-location"><%=user.allHospitals[i].address || "NA"%></p>
+                        <i class="fas fa-bed"></i>
+                        <p class="degree2 hide-desktop"><%=user.allHospitals[i].beds%> beds</p>
+                        <p class="degree2 hide-mobile hide-tab show-desktop">
+                            <%=user.allHospitals[i].beds? user.allHospitals[i].beds+"beds":"NA"%></p>
+                        <i class="fas fa-stethoscope"></i>
+                        <p class="experience">Famous Treatments</p>
+                        <div class="hospital-services">
+                            <%if(user.allHospitals[i].treatments&&user.allHospitals[i].treatments.length>0){for(var j=0;j<user.allHospitals[i].treatments.length;j++) {
+                                var t = user.allHospitals[i].treatments[j].toString().split(",");
+                                for(var k =0; k<t.length; k++) {%>
+                            <div class="service"><%=  t[k]%> </div>
+                            <% }}} %>
+                        </div>
+                    </div>
+                    <button>Call Now</button>
+                    <div class="doc-image">
+                        <img src="uploads/<%=user.allHospitals[i].hospitalPic || "Apollo2.jpg"%> " alt="">
+                    </div>
+                </div>
+                <%}%>
+                <!-- <div class="doc-details doc-div-style hospital-div-style">
+                    <div class="details-grid hospital-details-grid">
+                        <h4 class="name">Fortis Hospital</h4>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="doc-location">Delhi Mathura Road, Sarita Vihar, Delhi 1100776</p>
+                        <i class="fas fa-bed"></i>
+                        <p class="degree2 hide-desktop">100 beds</p>
+                        <p class="degree2 hide-mobile hide-tab show-desktop">133 beds</p>
+                        <i class="fas fa-stethoscope"></i>
+                        <p class="experience">Famous Treatments</p> 
+                        <div class="hospital-services">
+                            <div class="service">Multi Organ Transplant</div>
+                            <div class="service">Orthopedic Surgery</div>
+                            <div class="service">Infertility Treatment</div>
+                            <div class="service">Dentistry</div>
+                            <div class="service">Cardiology</div>
+                            <div class="service">Cancer</div>
+                            <div class="service">+40 more</div>
+                        </div>
+                    </div>
+                    <button>Call Now</button>
+                    <div class="doc-image">
+                        <img src="images/Fortis.png" alt="">
+                    </div>
+                </div>
+                <div class="doc-details doc-div-style hospital-div-style">
+                    <div class="details-grid hospital-details-grid">
+                        <h4 class="name">Rockland Hospital</h4>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="doc-location">Delhi Mathura Road, Sarita Vihar, Delhi 1100776</p>
+                        <i class="fas fa-bed"></i>
+                        <p class="degree2 hide-desktop">100 beds</p>
+                        <p class="degree2 hide-mobile hide-tab show-desktop">133 beds</p>
+                        <i class="fas fa-stethoscope"></i>
+                        <p class="experience">Famous Treatments</p>
+                        <div class="hospital-services">
+                            <div class="service">Multi Organ Transplant</div>
+                            <div class="service">Orthopedic Surgery</div>
+                            <div class="service">Infertility Treatment</div>
+                            <div class="service">Dentistry</div>
+                            <div class="service">Cardiology</div>
+                            <div class="service">Cancer</div>
+                            <div class="service">+40 more</div>
+                        </div>
+                    </div>
+                    <button>Call Now</button>
+                    <div class="doc-image">
+                        <img src="images/rockland.jpg" alt="">
+                    </div>
+                </div>
+                <div class="doc-details doc-div-style hospital-div-style">
+                    <div class="details-grid hospital-details-grid">
+                        <h4 class="name hide-mobile show-desktop show-tab">Primus Super Speciality Hospital</h4>
+                        <h4 class="name hide-tab hide-desktop show-mobile">Primus Super Speciality 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hospital</h4>   
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="doc-location">Delhi Mathura Road, Sarita Vihar, Delhi 1100776</p>
+                        <i class="fas fa-bed"></i>
+                        <p class="degree2 hide-desktop">sdfsf</p>
+                        <p class="degree2 hide-mobile hide-tab show-desktop">133 beds</p>
+                        <i class="fas fa-stethoscope"></i>
+                        <p class="experience">Famous Treatments</p>                    
+                        <div class="hospital-services">
+                            <div class="service">Multi Organ Transplant</div>
+                            <div class="service">Orthopedic Surgery</div>
+                            <div class="service">Infertility Treatment</div>
+                            <div class="service">Dentistry</div>
+                            <div class="service">Cardiology</div>
+                            <div class="service">Cancer</div>
+                            <div class="service">+40 more</div>
+                        </div>
+                    </div>
+                    <button>Call Now</button>
+                    <div class="doc-image">
+                        <img src="images/primus.jpg" alt="">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class= "help">
+        <div class="help-desktop">
+            <h2>Need Help?</h2>
+            <p>Just let us know. We will be happy to assist you</p>
+        </div>
+        <button onclick="location.href='/submit_your_query'">Submit your query</button>
+    </div>
+    <%- include("footer")-%>
+</body>
+
+</html>

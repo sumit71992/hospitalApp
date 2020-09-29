@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/adminMain.css">
+  <link rel="stylesheet" href="adminDoctor.css">
+  <link rel="stylesheet" href="adminHospital.css">
+  <link rel="stylesheet" href="/toaster.css">
+
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container" style="padding: 0 0 0 1rem;">
+      <div class="allusr">
+        <h3>All Hospitals</h3>
+      </div>
+
+      <div class="doc-grid">
+        <% for(var i=0;i<user.allHospitals.length;i++){ %>
+        <div class="doc-details doc-details<%=i%>">
+          <img src="uploads/<%=user.allHospitals[i].hospitalPic || "Apollo2.jpg"%> " alt="">
+          <div class="controls userControls">
+            <a href="adminEditHospital/<%=user.allHospitals[i].name%>">
+              <div style="background-color: transparent;">
+                <i class="fas fa-id-card"></i>
+              </div>
+            </a>
+          </div>
+          <h4 class="name"><%=user.allHospitals[i].name%></h4>
+          <ul>
+            <li> <i class="fas fa-stethoscope"></i><%=user.allHospitals[i].speciality || "Info not available"%></li>
+            <li> <i class="fas fa-map-marker-alt"></i><%=user.allHospitals[i].address || "Info not available"%></li>
+            <li><i class="fas fa-venus-mars"></i><%=user.allHospitals[i].treatments || "Info not available"%></li>
+            <li><i class="fas fa-stethoscope"></i><%=user.allHospitals[i].beds?user.allHospitals[i].beds+" Beds":"Info. Not Available"%>
+            </li>
+           
+          </ul>
+        </div>
+        <%}%>
+        </div>
+  
+    </div>
+    
+  </div>
+  <div class="blue-line"></div>
+  <script> 
+    async function showForm(param) {
+      const form = document.querySelector("#menuItem" + param);
+      if (form.style.display == "block")
+        form.style.display = "none";
+      else form.style.display = "block";
+    }
+  </script>
+</body>
+
+</html>

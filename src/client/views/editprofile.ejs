@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/tagify.css">
+  <link rel="stylesheet" href="/theme.css">
+</head>
+
+<body>
+  <%- include ('headers')-%>
+  <div class="grid-container">
+    <%- include ('dashboard')-%>
+    <%- include ('toaster')-%>
+    <div id="check">
+      <%if(user.role!=="admin"){%>
+      <form method="POST" action="/editprofile" enctype="multipart/form-data">
+        <div class="heading">
+          <h4>Accounts</h4>
+          <button class="primary" type="submit">Save Changes</button>
+        </div>
+        <hr>
+
+        <div id="fields">
+          <div class="field-set">
+            <div class="input-row">
+              <label>PROFILE PHOTO</label>
+              <div class="profile_photo_grid">
+                <div id="image" style="background-image: url('/uploads/<%=user.Image%>');">
+                </div>
+                <div>
+                  Pick a photo from your system
+                  <label for="Image">Add photo</label>
+                  <input type="file" name="Image" id="Image">
+                </div>
+              </div>
+            </div>
+            <div class="input-row">
+              <label for="name">Name</label>
+              <input type="text" name="name" value="<%=user.name%>" id="name">
+            </div>
+          </div>
+          <hr>
+          <div class="field-set">
+            <div class="input-row">
+              <label for="number" id="number">Phone Number <a id="editb">Edit</a></label>
+              <input type="text" name="number" id="enumber" value="<%=user.phoneNumber%>" readonly='readonly'>
+            </div>
+            <div class="input-row">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" value="<%=user.email%>">
+            </div>
+            <div class="input-row">
+              <label for="gender">Gender</label>
+              <select name="gender" id="gender">
+                <option value="<%=user.gender%>" selected="" hidden=""><%=user.gender%></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="input-row">
+              <label for="DOB">Date of Birth</label>
+              <input type="date" name="dob" id="dob" value="<%=(user.dob).toString().substring(0,10)%>">
+            </div>
+            <div class="input-row">
+              <label for="timezone">Timezone</label>
+              <select name="timezone" id="timezone">
+                <option value="<%=user.timeZone%>" selected="" hidden=""><%=user.timeZone%></option>
+                <option value="(UTC+5:30) Asia / Kolkata">(UTC+5:30) Asia / Kolkata</option>
+                <option value="(UTC+4:30) Asia / Kabul">(UTC+4:30) Asia / Kabul</option>
+              </select>
+            </div>
+          </div>
+          <hr>
+          <div class="field-set">
+            <div class="input-row">
+              <label for="housenum">House No/ Street Name/Area</label>
+              <input type="text" name="housenum" id="housenum" value="<%=user.houseNumber%>">
+            </div>
+            <div class="input-row">
+              <label for="colony">Colony/Street/Locality</label>
+              <input type="text" name="locality" id="locality" value="<%=user.locality%>">
+            </div>
+            <div class="input-row">
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" value="<%=user.city%>">
+            </div>
+            <div class="input-row">
+              <label for="state">State</label>
+              <input type="text" name="state" id="state" value="<%=user.state%>">
+            </div>
+            <div class="input-row">
+              <label for="country">Country</label>
+              <input type="text" name="country" id="country" value="<%=user.country%>">
+            </div>
+          </div>
+          <%if(user.role === "doctor"){%>
+          <hr>
+          <div class="field-set">
+            <div class="input-row">
+              <label for="description">Description</label>
+              <textarea name="description" id="description"><%=user.doctorData.description%></textarea>
+            </div>
+            <div class="input-row">
+              <label for="speciality">Speciality</label>
+              <input type="text" name="speciality" id="speciality" value="<%=user.doctorData.speciality%>" size="20">
+            </div>
+            <div class="input-row">
+              <label for="treatment">Treatments</label>
+              <input type="text" name="treatment" id="treatment" value="<%=user.doctorData.treatments%>">
+            </div>
+            <div class="input-row">
+              <label for="qualification">Qualifications</label>
+              <input type="text" name="qualification" id="qualification" value="<%=user.doctorData.qualifications%>">
+            </div>
+            <div class="input-row">
+              <label for="hospital">Hospital</label>
+              <input type="text" name="hospital" id="hospital" value="<%=user.doctorData.hospitals%>">
+            </div>
+            <div class="input-row">
+              <label for="achievement">Achievement</label>
+              <input type="text" name="achievement" id="achievement" value="<%=user.doctorData.achievements%>">
+            </div>
+            <div class="input-row">
+              <label for="awards">Awards</label>
+              <input type="text" name="awards" id="awards" value="<%=user.doctorData.awards%>">
+            </div>
+            <div class="input-row">
+              <label for="experience">Experience</label>
+              <input type="text" name="experience" id="experience" value="<%=user.doctorData.experience%>">
+            </div>
+            <div class="input-row">
+              <label for="fees">Average Fees</label>
+              <input type="text" name="fees" id="fees" value="<%=user.doctorData.averageFees%>">
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </form>
+        <%}%>
+          <%if(user.role==="admin"){%>
+          <form method="POST" action="/editprofile/<%=user.adminData.userData._id%>" enctype="multipart/form-data">
+            <div class="heading">
+              <h4>Accounts</h4>
+              <button class="primary" onclick="tagifyConvert()" type="submit">Save Changes</button>
+            </div>
+            <hr>
+            <div id="fields">
+              <div class="field-set">
+                <div class="input-row">
+                  <label>PROFILE PHOTO</label>
+                  <div class="profile_photo_grid">
+                    <div id="image" style="background-image: url('/uploads/<%=user.adminData.userData.Image%>');">
+                    </div>
+                    <div>
+                      Pick a photo from your system
+                      <label for="Image">Add photo</label>
+                      <input type="file" name="Image" id="Image">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-row">
+                  <label for="name">Name</label>
+                  <input type="text" name="name" value="<%=user.adminData.userData.name%>" id="name">
+                </div>
+              </div>
+              <hr>
+              <div class="field-set">
+                <div class="input-row">
+                  <label for="number" id="number">Phone Number <a id="editb">Edit</a></label>
+                  <input type="text" name="number" id="enumber" value="<%=user.adminData.userData.phoneNumber%>"
+                    readonly='readonly'>
+                </div>
+                <div class="input-row">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="email" value="<%=user.adminData.userData.email%>">
+                </div>
+                <div class="input-row">
+                  <label for="gender">Gender</label>
+                  <select name="gender" id="gender">
+                    <option value="<%=user.gender%>" selected="" hidden=""><%=user.adminData.userData.gender%></option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div class="input-row">
+                  <label for="DOB">Date of Birth</label>
+                  <input type="date" name="dob" id="dob"
+                    value="<%=(user.adminData.userData.dob).toISOString().substring(0,10)%>">
+                </div>
+                <div class="input-row">
+                  <label for="timezone">Timezone</label>
+                  <select name="timezone" id="timezone">
+                    <option value="<%=user.timeZone%>" selected="" hidden=""><%=user.adminData.userData.timeZone%>
+                    </option>
+                    <option value="(UTC+5:30) Asia / Kolkata">(UTC+5:30) Asia / Kolkata</option>
+                    <option value="(UTC+4:30) Asia / Kabul">(UTC+4:30) Asia / Kabul</option>
+                  </select>
+                </div>
+              </div>
+              <hr>
+              <div class="field-set">
+                <div class="input-row">
+                  <label for="housenum">House No/ Street Name/Area</label>
+                  <input type="text" name="housenum" id="housenum" value="<%=user.adminData.userData.houseNumber%>">
+                </div>
+                <div class="input-row">
+                  <label for="colony">Colony/Street/Locality</label>
+                  <input type="text" name="locality" id="locality" value="<%=user.adminData.userData.locality%>">
+                </div>
+                <div class="input-row">
+                  <label for="city">City</label>
+                  <input type="text" name="city" id="city" value="<%=user.adminData.userData.city%>">
+                </div>
+                <div class="input-row">
+                  <label for="state">State</label>
+                  <input type="text" name="state" id="state" value="<%=user.adminData.userData.state%>">
+                </div>
+                <div class="input-row">
+                  <label for="country">Country</label>
+                  <input type="text" name="country" id="country" value="<%=user.adminData.userData.country%>">
+                </div>
+              </div>
+              <% if(user.adminData.userData.role === "doctor"){%>
+              <hr>
+              <div class="field-set">
+                <div class="input-row">
+                  <label for="description">Description</label>
+                  <textarea name="description"
+                    id="description"><%=user.adminData.userData.doctorData.description%></textarea>
+                </div>
+                <div class="input-row">
+                  <label for="speciality">Speciality</label>
+                  <input type="text" name="speciality" id="speciality"
+                    value="<%=user.adminData.userData.doctorData.speciality%>" size="20">
+                </div>
+                <div class="input-row">
+                  <label for="treatment">Treatments</label>
+                  <input type="text" name="treatment" id="treatment"
+                    value="<%=user.adminData.userData.doctorData.treatments%>">
+                </div>
+                <div class="input-row">
+                  <label for="qualification">Qualifications</label>
+                  <input type="text" name="qualification" id="qualification"
+                    value="<%=user.adminData.userData.doctorData.qualifications%>">
+                </div>
+                <div class="input-row">
+                  <label for="hospital">Hospital</label>
+                  <input type="text" name="hospital" id="hospital"
+                    value="<%=user.adminData.userData.doctorData.hospitals%>">
+                </div>
+                <div class="input-row">
+                  <label for="achievement">Achievement</label>
+                  <input type="text" name="achievement" id="achievement"
+                    value="<%=user.adminData.userData.doctorData.achievements%>">
+                </div>
+                <div class="input-row">
+                  <label for="awards">Awards</label>
+                  <input type="text" name="awards" id="awards" value="<%=user.adminData.userData.doctorData.awards%>">
+                </div>
+                <div class="input-row">
+                  <label for="experience">Experience</label>
+                  <input type="text" name="experience" id="experience"
+                    value="<%=user.adminData.userData.doctorData.experience%>">
+                </div>
+                <div class="input-row">
+                  <label for="fees">Average Fees</label>
+                  <input type="text" name="fees" id="fees" value="<%=user.adminData.userData.doctorData.averageFees%>">
+                </div>
+              </div>
+              <%}%>
+          </div>
+        </form>
+          <%}%>
+
+            </div>
+        </div>
+        <script src="tagify.min.js"></script>
+        <script>
+          var speciality = document.querySelector('input[name=speciality]');
+          var tagify = new Tagify(speciality);
+          var treatment = document.querySelector('input[name=treatment]');
+          var tagify = new Tagify(treatment);
+          var qualification = document.querySelector('input[name=qualification]');
+          var tagify = new Tagify(qualification);
+          var hospital = document.querySelector('input[name=hospital]');
+          var tagify = new Tagify(hospital);
+          var achievement = document.querySelector('input[name=achievement]');
+          var tagify = new Tagify(achievement);
+          var awards = document.querySelector('input[name=awards]');
+          var tagify = new Tagify(awards);
+          function tagifyConvert() {
+            const treatments = document.querySelector("#treatment");
+            const speciality = document.querySelector("#speciality");
+            const qualification = document.querySelector("#qualification");
+            const hospital = document.querySelector("#hospital");
+            const achievement = document.querySelector("#achievement");
+            const awards = document.querySelector("#awards");
+            speciality.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+            treatments.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+            qualification.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+            hospital.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+            achievement.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+            awards.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+          }
+        </script>
+        <script>
+          var edit = document.getElementById("editb");
+          var number = document.getElementById("enumber");
+          number.onblur = function () {
+            this.setAttribute('readonly');
+          }
+          edit.onclick = function () {
+            number.removeAttribute('readonly');
+          }
+        </script>
+</body>
+
+</html>

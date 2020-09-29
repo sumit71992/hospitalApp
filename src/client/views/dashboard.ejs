@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <h3>Dashboard</h3>
+    <ul class="navbar-nav">
+      <%if(user.role==="doctor" || user.role === "user"){%>
+      <li >
+        <a href="/editprofile" id="profile">
+          <i class="fas fa-hospital"></i>
+          <div class="option ">Profile</div>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/allappointments" id="appointments">
+          <i class="fas fa-user-md"></i>
+          <div class="option ">Appointments</div>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role==="doctor"){%>
+      <li>
+        <a href="/createSchedule" id="createSchedules">
+          <i class="fas fa-user-md"></i>
+          <div class="option ">Create / Edit Schedules</div>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role==="user"){%>
+      <li>
+        <a href="/medicalreport" id="medical-history">
+          <i class="fas fa-hospital"></i>
+          <div class="option ">Medical Report</div>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role==="admin"){%>
+        <li class="nav-item active">
+          <a href="/adminDashboard" id="dashboard">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+            <div class="option ">Dashboard</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/adminUsers" id="users">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <div class="option ">Users</div>
+          </a>
+        </li>
+        <li>
+          <a href="/adminDoctors" id="doctors">
+            <i class="fa fa-user-md" aria-hidden="true"></i>
+            <div class="option ">Doctors</div>
+          </a>
+        </li>
+        <li>
+          <a href="/adminHospitals" id="hospitals">
+            <i class="fas fa-hospital"></i>
+            <div class="option ">Hospitals</div>
+          </a>
+        </li>
+        <%}%>
+      <li>
+        <a href="/setting" id="settings">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <div class="option ">Settings</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

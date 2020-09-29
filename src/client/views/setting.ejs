@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="editprofile.css">
+  <link rel="stylesheet" href="setting.css">
+</head>
+
+<body>
+  <%-include ('headers') %>
+  <div class="grid-container">
+    <%-include ('dashboard') %>
+    <%-include ('toaster') %>
+    <div id="check">
+      <form name="settingForm" method="POST" action="/setting" onsubmit="return validateForm()">
+        <div class="heading">
+          <h3>Accounts</h3>
+          <button class="primary" type="submit">Save Password</button>
+        </div>
+        <div class="field-set">
+          <div class="input-row">
+            <label for="password">Current Password</label>
+            <input type="password" name="current_password" id="password">
+            <i class="fas fa-eye-slash" id="password-hidden"></i>
+            <i class="fas fa-eye" id="password-visible" style="display: none; color: #0173b2;"></i>
+          </div>
+          <div class="input-row">
+            <label for="password">New Password</label>
+            <input type="password" name="new_password" id="password" pattern="(?=.*[0-9])(?=.*[!@#$%^&amp;*])[a-zA-Z0-9!@#$%^&amp;*]{7,15}">
+              <i class="fas fa-eye-slash" id="password-hidden"></i>
+              <i class="fas fa-eye" id="password-visible" style="display: none; color: #0173b2;"></i>
+          </div>
+          <div class="input-row">
+            <label for="username">Confirm Password</label>
+            <input type="password" name="confirm_password">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/toggle-password.js"></script>
+  <script>
+    function validateForm() {
+      var newPass = document.settingForm.new_password.value;
+      var cnfPass = document.settingForm.confirm_password.value;
+
+      console.log("validation reached", newPass, cnfPass)
+      if (newPass !== cnfPass) {
+        alert("confirm password doesn't match new password");
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+
+  </script>
+</body>
+
+</html>

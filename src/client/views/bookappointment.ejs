@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bookappointment.css">
+  <link rel="stylesheet" href="theme.css">
+  <title>Doctors</title>
+</head>
+
+<body>
+  <%- include ("headers") -%>
+  <%- include ("toaster") -%>
+  <div class="container">
+    <div class="slot_details">
+      <h3>In Clinic Appointment</h3>
+      <hr>
+      <div class="appointment_details">
+        <div id="date">
+          <i class="far fa-calendar-plus"></i>
+          <div> On <span>
+              <%var doa=new Date(user.appointmentDetails.dateOfAppointment).toUTCString();%>
+              <%=doa.split(" ")[0]+" "+doa.split(" ")[1]+" "+doa.split(" ")[2]+" "+doa.split(" ")[3]%>
+            </span></div>
+        </div>
+        <div id="time">
+          <i class="far fa-clock"></i>
+          <div>At <span><%=user.appointmentDetails.bookingSubSchedule.startTime%></span></div>
+        </div>
+      </div>
+      <a href="/doctors">Change date and time</a>
+      <div class="doctor_details">
+        <div class="image_wrapper">
+          <img src="/uploads/<%=user.appointmentDetails.dInfo.Image%>" alt="doc pic">
+        </div>
+        <div class="specifications">
+          <ul>
+            <li class="name"><%=user.appointmentDetails.dInfo.name%></li>
+            <li><%=user.appointmentDetails.dInfo.doctorData.hospitals%></li>
+            <li>
+              <%=user.appointmentDetails.dInfo.doctorData.qualifications%>
+            </li>
+            <li>
+              <%=user.appointmentDetails.dInfo.doctorData.speciality%>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="hospital_details">
+        <div class="image_wrapper">
+          <img src="https://cdn0.iconfinder.com/data/icons/health-icons-rounded/110/Hospital-512.png" alt="">
+        </div>
+        <div class="specifications">
+          <ul>
+            <li class="name"><%=user.appointmentDetails.appointmentSchedule.hospital%></li>
+            <li>NA</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="user_details">
+      <h3 style="color: #2a2d3e;">Patient Details</h3>
+      <div class="question">This appointment is for:</div>
+      <div class="radio_button">
+        <ul>
+          <li>
+            <input type="radio" name="self" id="self" checked onchange="details('self')">
+            <label for="self"><%=user.name%></label>
+          </li>
+          <hr>
+          <li>
+            <input type="radio" name="someone" id="someone" onchange="details('other')">
+            <label for="someone">Someone Else</label>
+          </li>
+        </ul>
+      </div>
+      <div class="question">Please provide the following information</div>
+      <form action="/booking" method="POST">
+        <label for="name">Patient Name</label>
+        <input type="text" name="name" id="name" value="<%=user.name%>" required readonly>
+        <label for="number">Mobile Number</label>
+        <input type="text" name="number" id="number" value="<%=user.phoneNumber%>" readonly>
+        <label for="pNumber">Patient Mobile Number</label>
+        <input type="text" name="pNumber" id="pNumber" value="<%=user.phoneNumber%>">
+        <label for="email">Patient Email</label>
+        <input type="email" name="email" id="email" value="<%=user.email%>">
+
+        <button type="submit">Book appointment</button>
+      </form>
+    </div>
+  </div>
+  <Script>
+    const self = document.getElementById("self");
+    const someone = document.getElementById("someone");
+    const pName = document.getElementById("name");
+    const number = document.getElementById("number")
+    const pNumber = document.getElementById("pNumber");
+    const email = document.getElementById("email");
+    var patientName, patientNumber, patientEmail;
+    if (self) {
+      patientName = pName.value;
+      patientEmail = email.value;
+      patientNumber = number.value;
+    }
+    async function details(data) {
+      if (data === "self") {
+        pName.value = patientName;
+        pName.readOnly = true;
+        pNumber.value = patientNumber;
+        pNumber.readOnly = true;
+        email.value = patientEmail;
+        email.readOnly = true;
+      }
+      else if (data === "other") {
+        pName.value = "";
+        pName.readOnly = false;
+        pName.required = true;
+        pNumber.value = "";
+        pNumber.readOnly = false;
+        pNumber.required = true;
+        email.value = "";
+        email.readOnly = false;
+        email.required = true;
+      }
+    }
+    window.onload = function() {
+  document.querySelectorAll("INPUT[type='radio']").forEach(function(rd) {
+    rd.addEventListener("mousedown", function() {
+      if(this.checked) {
+        this.onclick=function() {
+          this.checked=false
+        }
+      } else {
+        this.onclick=null
+      }
+    })
+  })
+}
+  </Script>
+</body>
+
+</html>

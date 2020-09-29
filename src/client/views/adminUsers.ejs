@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/adminMain.css">
+  <link rel="stylesheet" href="/adminuser.css">
+  <link rel="stylesheet" href="/toaster.css">
+
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container" style="padding: 0 0 0 1rem;">
+      <div class="allusr">
+        <h3>All Users</h3>
+      </div>
+
+      <div class="doc-grid">
+        <% for(var i=0;i<user.adminData.allUser.length;i++){ %>
+        <div class="doc-details doc-details<%=i%>">
+          <img src="uploads/<%=user.adminData.allUser[i].Image%>" alt="">
+          <div class="controls userControls">
+            <a onclick="showForm('<%=i%>')">
+              <div>
+                <i class="fas fa-bars"></i>
+              </div>
+            </a>
+            <ul class="menuItem" id="menuItem<%= i %>" style="display: none;">
+              <li><a href="/editprofile/<%= user.adminData.allUser[i]._id %> " style="color: rgb(0, 0, 252);">Edit Profile</a>
+              </li>
+              <li><a href="/adminUserAllAppointments/<%= user.adminData.allUser[i]._id %> " style="color: rgb(0, 0, 252);">
+                  Appointments </a></li>
+              <li><a href="/medicalreport/<%= user.adminData.allUser[i]._id %> " style="color: rgb(0, 0, 252);">Medical
+                  Reports</a>
+              </li>
+            </ul>
+          </div>
+          <h4 class="name"><%=user.adminData.allUser[i].name%></h4>
+          <ul>
+            <li><i class="fas fa-mobile-alt"></i><%=user.adminData.allUser[i].phoneNumber || "Info not available"%></li>
+            <li><i class="fas fa-envelope"></i><%=user.adminData.allUser[i].email%></li>
+            <li> <i class="fas fa-calendar-week"></i><%=(user.adminData.allUser[i].dob).toString().substring(4,15)%>
+            </li>
+            <li><i class="fas fa-venus-mars"></i><%=user.adminData.allUser[i].gender || "Info not available"%></li>
+            <li><i class="fas fa-map-marker-alt"></i><%=user.adminData.allUser[i].city || "Info not available"%>
+              <%=user.adminData.allUser[i].state%></li>
+          </ul>
+        </div>
+        <%}%>
+        </div>
+  
+    </div>
+    
+  </div>
+  <div class="blue-line"></div>
+  <script> 
+    async function showForm(param) {
+      const form = document.querySelector("#menuItem" + param);
+      if (form.style.display == "block")
+        form.style.display = "none";
+      else form.style.display = "block";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="tagify.css">
+    <link rel="stylesheet" href="theme.css">
+    <title>Sign up</title>
+</head>
+
+<body>
+
+    <%- include("headers")-%>
+    <%- include("toaster")%>
+    <div class="display-flex">
+        <div class="contact-form">
+            <h3>Please Fill All Details To Access This Site</h3>
+            <hr>
+            <form action="/doc_details" method="POST" enctype="multipart/form-data">
+                <div class="textarea">
+                    <textarea type="description" name="description" id="description" placeholder="Write About Yourself"></textarea>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="speciality" id="speciality" placeholder="Speciality">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="treatment" id="treatment" placeholder="Treatments">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="qualification" id="qualification" placeholder="Qualification">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="hospital" id="hospital" placeholder="Hospital">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="achievement" id="achievement" placeholder="Achievement">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="awards" id="awards" placeholder="Awards">
+                </div>
+                <div id="place">
+                    <div class="input-box">
+                        <input type="text" name="experience" id="experience" placeholder="Experience">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="fees" id="fees" placeholder="Avg fees">
+                    </div>
+                </div>
+                <div class="file">
+                    <input type="file" name="Image" id="Image" placeholder="File">
+                </div>
+                <div class="btn">
+                    <button onclick="tagifyConvert()" type="submit">Add Fields</button>
+                </div>
+            </form>
+        </div>
+        <footer class="copyright">
+            <div class="footer-content">
+                All Rights Reserved &copy; tvastra 2018
+            </div>
+        </footer>
+    </div>
+    <script src="tagify.min.js"></script>
+    <script>
+        var speciality = document.querySelector('input[name=speciality]');
+        var tagify = new Tagify(speciality);
+        var treatment = document.querySelector('input[name=treatment]');
+        var tagify = new Tagify(treatment);
+        var qualification = document.querySelector('input[name=qualification]');
+        var tagify = new Tagify(qualification);
+        var hospital = document.querySelector('input[name=hospital]');
+        var tagify = new Tagify(hospital);
+        var achievement= document.querySelector('input[name=achievement]');
+        var tagify = new Tagify(achievement);
+        var awards = document.querySelector('input[name=awards]');
+        var tagify = new Tagify(awards);
+
+     function tagifyConvert() {
+      const treatments = document.querySelector("#treatment");
+      const speciality = document.querySelector("#speciality");
+      const qualification = document.querySelector("#qualification");
+      const hospital = document.querySelector("#hospital");
+      const achievement = document.querySelector("#achievement");
+      const awards = document.querySelector("#awards");
+      speciality.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+      treatments.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+      qualification.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+      hospital.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+      achievement.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+      awards.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+    }
+    </script>
+</body>
+
+</html>

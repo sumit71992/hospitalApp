@@ -1,0 +1,218 @@
+@import "theme";
+@import "toaster";
+
+.display-flex{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #5aa9eb;
+}
+
+.contact-form{
+    width: 85%;
+    max-width: 45rem;
+    margin: auto;
+    background-color: white;
+    text-align: center;
+    a{
+        color: $bright-blue;
+        font-family: 'nexa-bold';
+        margin-top: 4rem;
+    }
+    form{
+        padding:1rem;
+    }
+    h3{
+        padding: 1.5rem 0;
+        color: $bright-blue;
+        margin:0;
+    }
+    button{
+        display: block;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+        padding: 0.6rem 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        i{
+            color: white;
+            float: right;
+        }
+    }
+    
+    }
+    .resend{
+        display: flex;
+        justify-content: center;
+        button{
+            background-color: transparent;
+            color: $bright-blue;
+            width: fit-content;
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+            font-family: 'nexa-bold';
+            font-size: 0.7rem;
+            line-height: 0em;
+            border: none;
+           
+        }
+    }
+    .login-way{
+        margin: 1.5rem 0 0 0;
+        display: flex;
+        justify-content: space-between;
+        .otp-login{
+            a{
+            font-family: 'nexa-bold';
+            color: #399dee;
+            font-size: 1.2rem;
+            text-decoration: none;
+            }
+        }
+        .forgot-pass{
+            
+            font-family: 'nexa-bold';
+            color: #399dee;
+            font-size: 1.2rem;
+            letter-spacing: 0;
+            background-color: transparent;
+            width: fit-content;
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+}
+.input-box{
+    outline: 1px solid #e7e4e4;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    input, select{
+        padding: 1rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.06rem;
+        width: 100%;
+        border: none;
+        text-decoration: none;
+    }
+}
+.view-icon{
+    
+        position: relative;
+    
+    i{
+        font-size: 1rem;
+        margin: auto;
+        color: $light-blue;
+        cursor: pointer;
+        position: absolute;
+        right: 1rem;
+        top: 1.3rem;
+
+        
+    }
+}
+.signup-option{
+    font-family: 'nexa-bold';
+    color: gray;
+    padding-bottom: 1rem;
+    letter-spacing: -0.5px;
+    font-size: 0.8rem;
+    a{
+        color: #0568aa;
+        text-decoration: underline;
+    }
+}
+.copyright{
+    font-family: 'nexa-bold';
+    font-size: 0.8rem;
+    color: #000000;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+@media only screen and (min-width: 768px){
+    .display-flex{
+        height: 61.5rem;
+    }
+    .contact-form{
+        margin: auto;
+        form{
+            padding:2.5rem;
+        }
+        h3{
+            padding: 2.5rem 0;
+        }
+        button{
+            font-size: 1.5rem;
+            letter-spacing: 0.3rem;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+        }
+    }
+    .input-box{
+        margin-bottom: 0.8rem;
+        input, select{
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+    }
+    .mobile i{
+        font-size: 1.5rem;
+    }
+    .btn i{
+        color:white;
+        float:right;
+    }
+    
+
+    .signup-option{
+        padding-bottom: 2.5rem;
+        letter-spacing: -0.5px;
+        font-size:1rem;
+    }
+
+    .copyright{
+        font-size: 1rem;
+        letter-spacing: 0.05rem;
+    }
+}
+@media only screen and (min-width: 1024px){
+    header{
+        height: 4rem;
+        display:grid;
+        grid-template-columns: 20% 54% 27%;
+        padding: 0.5rem 0;
+        margin-top: 0;
+        width:100%;
+        a{
+            margin: auto 0 auto 0.7rem;
+            img{
+                height: 2.5em;
+                margin-left: 3.4rem;
+            }
+        }
+        .nav-buttons{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-right: 5rem;  
+            column-gap: 0.5rem;
+        }
+    }
+    .display-flex{
+        height: 110vh;
+    }
+    .contact-form{
+        margin-top: 1rem;
+        width: 50%;
+        padding: 0rem;
+        
+        button{
+            font-size: 1rem;
+        }
+    }
+}

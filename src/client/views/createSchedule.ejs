@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Slots</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/createSchedule.css">
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    
+
+    <div id="check">
+     
+
+      <% var all = user.allSchedule;
+      if(all.length===0 || all.length===null || all.length===undefined){%>
+      <div class="nosch" id="nosch"> No Schedule Available. Create Now By Clicking Create Schedule Button. </div>
+      <%}
+      else {%>
+      <% for(var i=0; i<all.length; i++){%>
+      <div class="schedule-container">
+        <div class="schedule">
+          <div class="day">
+            <%= all[i].days.slice(0,3).toUpperCase()%>
+          </div>
+          <div class="slot-details">
+            <div><%= all[i].hospital.toUpperCase()%></div>
+            <div style="font-family: 'nexa-light';">
+              <%= all[i].startTime%> <%= all[i].endTime%>
+            </div>
+          </div>
+          <div id="button-flex">
+
+            
+            <button onclick="remove('<%= i %>')">Remove Slot</button>
+            <button onclick="toggleSlot('<%=i%>')">View Details</button>
+
+          </div>
+          <input type="checkbox" name="disable" id="disable" class="disable"
+            onchange="window.location.href='/disableSchedule/<%=user.allSchedule[i]._id%>/disabled/<%=user.allSchedule[i].isDisabled%>'">
+        </div>
+
+
+        <div class="slots-container" id="slots-container<%=i%>" style="display: none;">
+          <%for(var j=0 ; j < all[i].subSchedule.length ; j++) {%>
+          <%if(all[i].subSchedule[j].isDisabled==true)
+              {%>
+          <div class="slot red">
+            <label for="<%= all[i].subSchedule[j]%>"><%= all[i].subSchedule[j].startTime %>
+              <%= all[i].subSchedule[j].endTime %></label>
+            <input type="checkbox" name="booked" id="<%= all[i].subSchedule[j]%>"
+              onchange="window.location.href='/disableSubSchedule/<%=all[i].subSchedule[j]._id%>/currentState/<%=all[i].subSchedule[j].isDisabled%>'">
+          </div>
+
+          <%}
+              else
+              {%>
+          <div class="slot">
+            <label for="<%= all[i].subSchedule[j]%>"> <%= all[i].subSchedule[j].startTime %>
+              <%= all[i].subSchedule[j].endTime %></label>
+            <input type="checkbox" name="book" id="<%= all[i].subSchedule[j]%>"
+              onchange="window.location.href='/disableSubSchedule/<%=all[i].subSchedule[j]._id%>/currentState/<%=all[i].subSchedule[j].isDisabled%>'">
+          </div>
+
+          <%}
+          }%>
+
+        </div>
+         <!-- edit -->
+      <div class="edit-container" id="edit-container<%=i%>" style="display: none;">
+        <form action="/edit/<%=all[i]._id%>" method="POST">
+          <div id="time">
+            <input type="time" name="start_time" id="<%=all[i].startTime%>" value="<%=all[i].startTime%>">
+            <input type="time" name="end_time" id="<%=all[i].endTime%>" value="<%=all[i].endTime%>">
+          </div>
+          <input type="number" name="duration" id="<%=all[i].interval%>" value="<%=all[i].interval%>" >
+          <input type="text" name="hospital" id="<%=all[i].hospital%>" value="<%=all[i].hospital%>">
+          <button type="submit">Edit Schedule</button>
+        </form>
+      </div>
+
+      <!-- edit -->
+
+      </div>
+      <%}}%>
+
+      <form action="/createSchedule" method="POST" id="eform<%=i%>" style="display: none;">
+        <div id="time">
+          <input type="time" name="start_time" id="start_time">
+          <input type="time" name="end_time" id="end_time">
+        </div>
+        <input type="number" name="duration" id="duration" placeholder="">
+        <input type="text" name="duration" id="duration" placeholder="" readonly>
+        <button type="submit">Edit Schedule</button>
+      </form>
+      </form>
+
+      <form action="/createSchedule" method="POST" id="form" style="display: none;" onsubmit="">
+
+
+
+        <form action="/createSchedule" id="form" method="POST" onsubmit="">
+
+          <h4>Choose Available Days</h4>
+          <select name="days[]" id="days" multiple required>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+          <select name="hospital" id="hospital" required>
+
+            <option value="hospital">Select hospital</option>
+            <%const h=user.doctorData.hospitals.length; 
+            for(var i=0;i<h;i++){%>
+            <option value="<%=user.doctorData.hospitals[i]%>">
+              <%=user.doctorData.hospitals[i].toUpperCase()%></option>
+            <%}%>
+
+          </select>
+          <div id="time">
+            <input type="time" name="start_time" id="start_time" required>
+            <input type="time" name="end_time" id="end_time" required>
+          </div>
+
+          <input type="number" name="duration" id="duration" placeholder="Enter Time Interval in minutes" required>
+          <input type="submit" value="Add Schedule">
+        </form>
+    </div>
+  </div>
+  <div id="add">
+    +<br>
+    Schedule
+  </div>
+   
+  <script src="/createSchedule.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $('input[type=checkbox]').on('change', function () {
+      var div = $(this).closest('.slot');
+      $(this).is(":checked") ? div.addClass("red") : div.removeClass("red");
+    });
+    $('.disable').on('change', function () {
+      var div = $(this).closest(".schedule-container");
+      $(this).is(":checked") ? div.addClass("off") : div.removeClass("off");
+    });
+    var show = document.getElementById("form");
+    var add = document.getElementById("add");
+    add.onclick = function(){
+      show.style.display="block";
+    }
+  </script>
+</body>
+
+</html>

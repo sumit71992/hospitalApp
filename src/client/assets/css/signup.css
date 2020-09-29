@@ -1,0 +1,386 @@
+.fail-msg {
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  background-color: #fdfdfd;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  column-gap: 0.5rem;
+  animation: animation 3s ease-in;
+  animation-fill-mode: forwards;
+  padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+  border-left: 0.25rem solid red;
+  width: 16rem;
+}
+
+.fail-msg .icon {
+  margin-top: 0.5rem;
+  font-family: 'nexa-bold';
+  color: red;
+}
+
+.fail-msg .icon #close {
+  color: #7a7777;
+}
+
+.fail-msg .msg h4 {
+  color: red;
+  font-size: 1.1rem;
+  margin: 0;
+  font-family: 'nexa-bold';
+  text-align: center;
+}
+
+.fail-msg .msg span {
+  color: red;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+.res-msg {
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  background-color: #fdfdfd;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  column-gap: 0.5rem;
+  animation: animation 3s ease-in;
+  animation-fill-mode: forwards;
+  padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+  border-left: 0.25rem solid green;
+  width: 16rem;
+}
+
+.res-msg .icons {
+  margin-top: 0.5rem;
+  font-family: 'nexa-bold';
+  color: green;
+}
+
+.res-msg .icons #close {
+  color: #7a7777;
+}
+
+.res-msg .msgs {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.res-msg .msgs h4 {
+  color: green;
+  font-size: 1.1rem;
+  margin: 0;
+  font-family: 'nexa-bold';
+  text-align: center;
+}
+
+.res-msg .msgs span {
+  color: green;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+@keyframes animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Nexa-Bold';
+}
+
+h1 {
+  font-size: 1.7rem;
+  color: #2a2d3e;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 0 1.1rem;
+  color: #2a2d3e;
+  font-weight: 700;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  color: white;
+  margin: 1rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: 1rem;
+}
+
+label {
+  font-family: 'nexa-light';
+  font-size: 1rem;
+}
+
+p {
+  font-family: 'nexa-light';
+  line-height: 1.2rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  letter-spacing: 0.05rem;
+  color: #2a2d3e;
+}
+
+li {
+  font-family: 'nexa-light';
+}
+
+button {
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  background-color: #040427;
+  margin-top: 1rem;
+  border: none;
+  letter-spacing: 0.05rem;
+}
+
+img {
+  display: block;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+  }
+  h4 {
+    font-size: 1.1rem;
+  }
+  p {
+    font-family: 'nexa-light';
+    line-height: 1.3rem;
+    font-size: 1rem;
+    margin: 2rem 0;
+    letter-spacing: 0.06rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  h1, h2 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  h2 {
+    padding: 0;
+  }
+}
+
+.display-flex {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #abcadd;
+}
+
+header {
+  background-color: white;
+}
+
+.contact-form {
+  width: 85%;
+  max-width: 45rem;
+  margin: auto;
+  background-color: white;
+  text-align: left;
+}
+
+.contact-form form {
+  padding: 1rem;
+}
+
+.contact-form h3 {
+  padding: 2rem 0;
+  margin: 0;
+  color: #0568aa;
+  text-align: center;
+}
+
+.contact-form button {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  padding: 1rem;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+hr {
+  color: #e6e4e4;
+  margin: 0;
+}
+
+.input-box {
+  outline: 1px solid #e7e4e4;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+.input-box input, .input-box select {
+  font-family: 'nexa-bold';
+  color: #c4c2c2;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06rem;
+  width: 100%;
+  border: none;
+}
+
+.textarea textarea {
+  height: auto;
+}
+
+.file {
+  width: fit-content;
+  margin: 1rem 0;
+}
+
+#place {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.2rem;
+}
+
+::placeholder {
+  color: #c4c2c2;
+}
+
+option {
+  font-size: 0.7rem;
+  letter-spacing: 0.06rem;
+}
+
+.mobile {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+}
+
+.mobile i {
+  font-size: 1.5rem;
+  margin: auto;
+  color: #aaa4a4;
+}
+
+.btn i {
+  color: white;
+  float: right;
+}
+
+.signup-option {
+  font-family: 'nexa-bold';
+  color: gray;
+  padding-bottom: 1rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.signup-option a {
+  color: #0568aa;
+  text-decoration: underline;
+}
+
+.copyright {
+  font-family: 'nexa-bold';
+  font-size: 0.7rem;
+  color: #696666;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  height: 10rem;
+  border: none;
+  outline: none;
+  outline: 1px solid #e7e4e4;
+  margin-bottom: 1.5rem;
+}
+
+.isdoctor {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.isdoctor input {
+  font-family: 'nexa-bold';
+}
+
+.isdoctor label {
+  font-family: 'nexa-bold';
+}
+
+@media only screen and (min-width: 768px) {
+  .display-flex {
+    height: 62rem;
+  }
+  .contact-form {
+    margin: auto;
+    width: 60%;
+  }
+  .contact-form h3 {
+    padding: 2.5rem 0;
+  }
+  .contact-form form {
+    padding: 1.5rem;
+  }
+  .contact-form button {
+    padding: 1rem 2rem;
+  }
+  .input-box {
+    margin-bottom: 0.7rem;
+  }
+  .input-box input, .input-box select {
+    padding: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .display-flex {
+    height: 50rem;
+  }
+  .copyright {
+    text-align: center;
+    margin: 2rem 0 0 0;
+  }
+}

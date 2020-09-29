@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Slots</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/signup.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/createSchedule.css">
+  <link rel="stylesheet" href="/allappointment.css">
+  <link rel="stylesheet" href="/status.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/medical.css">
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check">
+      <div class="record">
+        <h3>Medical Records</h3>
+        <button onclick="showDialog()" type="reset">Add Record</button>
+      </div>
+      <%if(user.role !== "admin"){%>
+      <form class="form" action="/addExistedReport/<%=user.report._id%>" method="POST" enctype="multipart/form-data"
+        autocomplete="off">
+        <div class="confirmationBox" id="confirmationBox">
+
+          <div class="cancelConfirmationBox">
+            <div class="photo">
+              <input type="file" id="Image" name="Image" placeholder="Image" accept="image/*" multiple>
+              <div id="preview" style="display: flex; flex-wrap: wrap;"></div>
+              <label for="Image"><i class="fas fa-plus"></i><span>Add
+                  Photo</span></label>
+            </div>
+            <div class="buttons">
+              <button class="yes" type="submit">Done</button>
+              <button class="no" onclick="showDialog()" type="reset">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="completed">
+        <div class="flex-containers">
+          <% for(var i=0; i< user.report.reports.length; i++){%>
+
+          <div class="pic-container">
+            <div class="action">
+              <div class="title">
+                <span><%=user.report.title%></span>
+              </div>
+              <div class="menu">
+                <span onclick="deleteReports(this,'<%=user.report._id%>')" style="visibility: hidden;">Delete</span>
+                <i class="fas fa-ellipsis-v" onclick="showMenu(this)"></i>
+              </div>
+            </div>
+            <img src="/uploads/<%=user.report.reports[i]%>" alt="">
+          </div>
+          <%}%>
+        </div>
+      </div>
+      <%}else{%>
+        <form class="form" action="/addExistedReport/<%=user.adminData.userData.report._id%>/<%=user.adminData.userData._id%>" method="POST" enctype="multipart/form-data"
+          autocomplete="off">
+          <div class="confirmationBox" id="confirmationBox">
+  
+            <div class="cancelConfirmationBox">
+              <div class="photo">
+                <input type="file" id="Image" name="Image" placeholder="Image" accept="image/*" multiple>
+                <label for="Image"><i class="fas fa-plus"></i><span>Add
+                    Photo</span></label>
+              </div>
+              <div class="buttons">
+                <button class="yes" type="submit">Done</button>
+                <button class="no" onclick="showDialog()" type="reset">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="completed">
+          <div class="flex-containers">
+            <% for(var i=0; i< user.adminData.userData.report.reports.length; i++){%>
+  
+            <div class="pic-container">
+              <div class="action">
+                <div class="title">
+                  <span><%=user.adminData.userData.report.title%></span>
+                </div>
+                <div class="menu">
+                  <span onclick="deleteReports(this,'<%=user.adminData.userData.report._id%>/<%=user.adminData.userData._id%>')" style="visibility: hidden;">Delete</span>
+                  <i class="fas fa-ellipsis-v" onclick="showMenu(this)"></i>
+                </div>
+              </div>
+              <img src="/uploads/<%=user.adminData.userData.report.reports[i]%>" alt="">
+            </div>
+            <%}%>
+          </div>
+        </div>
+        <%}%>
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    async function showDialog() {
+      const confirmationBox = document.getElementById("confirmationBox");
+      if (confirmationBox.style.display == "flex")
+        confirmationBox.style.display = "none";
+      else
+        confirmationBox.style.display = "flex";
+    }
+    async function showMenu(item) {
+      var menu = item.parentElement.children[0];
+      if (menu.style.visibility == "hidden")
+        menu.style.visibility = "visible";
+      else menu.style.visibility = "hidden"
+    }
+    async function deleteReports(item, reportId) {
+      const pic = item.parentElement.parentElement.parentElement.children[1].src;
+      var queryUrl = "/deleteReports/" + reportId + "/" + pic.split("/")[4];
+      console.log(queryUrl);
+      const deleteReportsPic = await fetch(queryUrl, {
+        method: "post"
+      });
+      item.parentElement.parentElement.parentElement.style.display = "none";
+    }
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+    function previewImages() {
+
+var $preview = $('#preview').empty();
+if (this.files) $.each(this.files, readAndPreview);
+
+function readAndPreview(i, file) {
+
+  if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+    return alert(file.name + " is not an image");
+  } // else...
+
+  var reader = new FileReader();
+
+  $(reader).on("load", function () {
+    $preview.append($("<img/>", { src: this.result, height: 100 }));
+  });
+
+  reader.readAsDataURL(file);
+
+}
+
+}
+
+$('#Image').on("change", previewImages);
+  </script>
+</body>
+
+</html>

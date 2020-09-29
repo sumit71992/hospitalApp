@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clocklet@0.2.6/css/clocklet.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/doctor.css">
+  <link rel="stylesheet" href="/reschedule.css">
+  <link rel="stylesheet" href="/theme.css">
+  <title>Reschedule</title>
+</head>
+
+<body>
+  <%- include("headers")-%>
+  <div class="mainSchContainer">
+    <div class="schcontainer">
+      
+      <h3>Reschedule Appointment</h3>
+      <div class="detail">
+        <div class="item">
+          <label>Practioner</label>
+          <span><%=user.rescheduleData.rescheduleDocData.name%></span>
+        </div>
+        <div class="item">
+          <label>Date</label>
+          <span><%=user.rescheduleData.rescheduleAppData.date.toString().split(" ")[0]+" "+user.rescheduleData.rescheduleAppData.date.toString().split(" ")[1]+" "+user.rescheduleData.rescheduleAppData.date.toString().split(" ")[2]+" "+user.rescheduleData.rescheduleAppData.date.toString().split(" ")[3]%></span>
+        </div>
+        <div class="item">
+          <label>Time</label>
+          <span><%=user.rescheduleData.subScheduleData[0].startTime%></span>
+        </div>
+      </div>
+      <div class="button-container">
+        <button onclick="showDocSchedule('carouselContainer0__allCarouselContainer0','<%=user.rescheduleData.rescheduleDocData._id%>')">Reschedule
+          appointment</button>
+      </div>
+      <div class="bookAppointmentContainer" style="display: none;">
+        <div class="carouselContainer allScheduleContainer" id="carouselContainer0">
+          <div class="carouselButton">
+            <div class="carouselLeftButton" onclick="moveCarousel('left','carouselContainer0__allCarouselContainer0')">
+              <i class="fas fa-less-than"></i>
+            </div>
+          </div>
+          <div class="allCarouselItems allCarouselItems0" id="carouselContainer0__allCarouselContainer0">
+          </div>
+          <div class="carouselButton">
+            <div class="carouselRightButton"
+              onclick="moveCarousel('right','carouselContainer0__allCarouselContainer0')">
+              <i class="fas fa-greater-than"></i></div>
+          </div>
+        </div>
+        <div class="subScheduleContainer" id="subScheduleContainer0">
+        </div>
+        <div class="hospital">
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="/doctor.js"></script>
+</body>
+
+</html>

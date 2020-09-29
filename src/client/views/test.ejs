@@ -1,0 +1,14 @@
+<% const doctor=user.rescheduleData.rescheduleDocData;
+      const subSchedule=user.rescheduleData.subScheduleData;
+      const appointmentData=user.rescheduleData.rescheduleAppData;
+      const Date = appointmentData.date.toString().split(" ")[0]+" "+appointmentData.date.toString().split(" ")[1]+" "+appointmentData.date.toString().split(" ")[2]+" "+appointmentData.date.toString().split(" ")[3];;
+      %>
+
+      <%=doctor.name%>
+
+      <%=Date%>
+
+
+      <%=subSchedule[0].startTime%>
+
+      <%=doctor._id%>

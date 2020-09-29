@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Slots</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/signup.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/createSchedule.css">
+  <link rel="stylesheet" href="/allappointment.css">
+  <link rel="stylesheet" href="/status.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/medical.css">
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check">
+      <%if(user.role!=="admin"){%>
+      <div class="record">
+        <h3>Medical Records</h3>
+        <button onclick="showDialog()" type="reset">Add Record</button>
+      </div>
+
+      <form class="form" action="/addRecord" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div class="confirmationBox" id="confirmationBox">
+
+          <div class="cancelConfirmationBox">
+            <div class="photo" id="photo">
+              <input type="file" id="Image" name="Image" placeholder="Image" multiple>
+              <div id="preview" style="display: flex; flex-wrap: wrap;"></div>
+              <label for="Image"><i class="fas fa-plus"></i><span>Add
+                  Photo</span></label>
+                  
+
+            </div>
+            <div class="record-form">
+              
+              <div class="input-box">
+                <input type="text" name="title" id="title" placeholder="Title">
+              </div>
+              <div class="input-box">
+                <input type="text" name="name" id="name" placeholder="Enter Name">
+              </div>
+              <div class="input-box">
+                <input type="date" name="date" id="date" placeholder="Enter password">
+              </div>
+            </div>
+            <div class="types">
+              <h2>Types Of Report</h2>
+              <div class="report-types">
+                <ul>
+                  <li>
+                    <input type="radio" name="reportInput" value="report" id="reportInput">
+                    <label for="reportInput">
+                      <i class="far fa-file-alt"></i>
+                      <span>Report</span>
+                    </label>
+                  </li>
+                  <li>
+                    <input type="radio" name="reportInput" value="prescription" id="prescription">
+                    <label for="prescription">
+                      <i class="far fa-file-alt"></i>
+                      <span>Prescription</span>
+                    </label>
+                  </li>
+                  <li>
+                    <input type="radio" name="reportInput" value="invoice" id="invoice">
+                    <label for="invoice">
+                      <i class="far fa-file-alt"></i>
+                      <span>Invoice</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="buttons">
+              <button class="yes" type="submit">Done</button>
+              <button class="no" onclick="showDialog()" type="reset">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="completed">
+        <% for(var i=0;i<user.medicalReportData.length;i++){
+          var date=new Date(user.medicalReportData[i].dateOfReport);
+             var dayName=date.toString().split(" ")[0];
+             date=date.toString().split(" ")[2]+ " "+date.toString().split(" ")[1];
+             if(user.medicalReportData[i].isDisabled===false){%>
+        <div class="schedule-container">
+          <div class="schedule">
+            <div class="day" onclick="window.location.href='/showreport/<%=user.medicalReportData[i]._id%>'"><%=date%>
+            </div>
+            <div class="slot-details">
+              <div class="hdetails title"
+                onclick="window.location.href='/showreport/<%=user.medicalReportData[i]._id%>'">
+                <%=user.medicalReportData[i].title%></div>
+              <div class="hdetails name"> <%=user.name%></div>
+              <div class="hdeatils report"><%=user.medicalReportData[i].typeOfReport%></div>
+            </div>
+            <div id="button-flex">
+              <button type="reset" onclick="showForm('<%=user.medicalReportData[i]._id%>')">Delete</button>
+            </div>
+          </div>
+
+          <form class="form" action="/deleteRecord/<%=user.medicalReportData[i]._id%>" method="POST">
+            <div class="confirmationBox" id="confirmationBox<%=user.medicalReportData[i]._id%>">
+
+              <div class="cancelConfirmationBox">
+                <h3>Cancel Appointment</h3>
+                <h4>Are you sure you want to cancel your appointment?</h4>
+                <div class="buttons">
+                  <button class="yes" type="submit">Yes</button>
+                  <button class="no" onclick="showForm('<%=user.medicalReportData[i]._id%>')" type="reset">No</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+        <% }}%>
+      </div>
+      <%}else{%>
+      <div class="completed">
+        <% for(var i=0;i<user.adminData.userData.medicalReportData.length;i++){
+                  var date=new Date(user.adminData.userData.medicalReportData[i].dateOfReport);
+                     var dayName=date.toString().split(" ")[0];
+                     date=date.toString().split(" ")[2]+ " "+date.toString().split(" ")[1];
+                     if(user.adminData.userData.medicalReportData[i].isDisabled===false){%>
+        <div class="schedule-container">
+          <div class="schedule">
+            <div class="day"
+              onclick="window.location.href='/showreport/<%=user.adminData.userData.medicalReportData[i]._id%>/<%=user.adminData.userData._id%>'">
+              <%=date%>
+            </div>
+            <div class="slot-details">
+              <div class="hdetails title"
+                onclick="window.location.href='/showreport/<%=user.adminData.userData.medicalReportData[i]._id%>'">
+                <%=user.adminData.userData.medicalReportData[i].title%></div>
+              <div class="hdetails name"> <%=user.adminData.userData.name%></div>
+              <div class="hdeatils report"><%=user.adminData.userData.medicalReportData[i].typeOfReport%></div>
+            </div>
+            <div id="button-flex">
+              <button type="reset"
+                onclick="showForm('<%=user.adminData.userData.medicalReportData[i]._id%>')">Delete</button>
+            </div>
+          </div>
+
+          <form class="form"
+            action="/deleteRecord/<%=user.adminData.userData.medicalReportData[i]._id%>/<%=user.adminData.userData._id%>"
+            method="POST">
+            <div class="confirmationBox" id="confirmationBox<%=user.adminData.userData.medicalReportData[i]._id%>">
+
+              <div class="cancelConfirmationBox">
+                <h3>Cancel Appointment</h3>
+                <h4>Are you sure you want to cancel your appointment?</h4>
+                <div class="buttons">
+                  <button class="yes" type="submit">Yes</button>
+                  <button class="no" onclick="showForm('<%=user.adminData.userData.medicalReportData[i]._id%>')"
+                    type="reset">No</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+        <% }}%>
+      </div>
+      <%}%>
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    async function showDialog() {
+      const confirmationBox = document.getElementById("confirmationBox");
+      if (confirmationBox.style.display == "flex")
+        confirmationBox.style.display = "none";
+      else
+        confirmationBox.style.display = "flex";
+    }
+    async function showForm(param) {
+      const form = document.querySelector("#confirmationBox" + param);
+      if (form.style.display == "flex")
+        form.style.display = "none";
+      else form.style.display = "flex";
+    }
+    window.onload = function () {
+      document.querySelectorAll("INPUT[type='radio']").forEach(function (rd) {
+        rd.addEventListener("mousedown", function () {
+          if (this.checked) {
+            this.onclick = function () {
+              this.checked = false
+            }
+          } else {
+            this.onclick = null
+          }
+        })
+      })
+    }
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("date").setAttribute("max", today);
+
+    function previewImages() {
+
+      var $preview = $('#preview').empty();
+      if (this.files) $.each(this.files, readAndPreview);
+
+      function readAndPreview(i, file) {
+
+        if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+          return alert(file.name + " is not an image");
+        } // else...
+
+        var reader = new FileReader();
+
+        $(reader).on("load", function () {
+          $preview.append($("<img/>", { src: this.result, height: 100 }));
+        });
+
+        reader.readAsDataURL(file);
+
+      }
+
+    }
+
+    $('#Image').on("change", previewImages);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+@import "theme";
+#users {
+  color: gray;
+}
+
+#doctors {
+  color: gray;
+}
+#hospitals{
+  color: gray;
+}
+.active{
+  color: $bright-blue;
+}
+#settings {
+  color: gray;
+}
+
+#dashboard {
+  color: #082dff;
+}
+#check-container{
+  background-color: #fff;
+  
+  .adminDashboard{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    .col{
+      display: grid;
+      grid-template-columns: 4rem auto;
+      align-items: center;
+      border-radius: 0.5rem;
+      width: 18rem;
+      margin: 0.5rem;
+      padding: 0.3rem 0 0.3rem 1rem;
+      background-color: whitesmoke;
+      box-shadow: 1rem 0.1rem 1rem 0 grey;
+      i{
+       grid-row: 1/3;
+       font-size: 3rem;
+       color: $bright-blue;
+      }
+      span{
+        font-family: nexa-bold;
+        color: $bright-blue;
+      }
+      h4{
+        color: $bright-blue;
+      }
+      
+    }
+    
+  }
+  .graphContainer {
+    padding: 1rem;
+    h3 {
+      margin: 0 1rem;
+    }
+    .picContainer {
+      width: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .recentAppointment{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    table{
+      th{
+        background-color: black;
+        tr{
+          td{
+            max-width: 23vw;
+            overflow-x: scroll;
+            padding: 0.5rem;
+            border: 0.1rem solid gray;
+            vertical-align: middle;
+            h4{
+              color: white;
+            }
+          }
+          ::-webkit-scrollbar{
+            width: 0;
+          }
+        }
+      }
+      tbody{
+        tr{
+          td{
+            max-width: 23vw;
+            overflow-x: scroll;
+            padding: 0.5rem;
+            border: 0.1rem solid gray;
+            vertical-align: middle;
+            h4{
+              color: #000;
+              a{
+                font-family: 'nexa-bold';
+                color: $bright-blue;
+              }
+            }
+          }
+          ::-webkit-scrollbar{
+            width: 0;
+          }
+          &:nth-child(even){
+            background-color: $light-grey;
+          }
+        }
+      }
+    }
+    .pagination{
+      ul{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0.5rem auto;
+          li{
+              border: 0.1rem solid $bright-blue;
+              padding: 0.2rem 0.5rem;
+              border-radius: 0.5rem;
+              margin: auto 0.2rem;
+              a{
+                  font-family: 'nexa-bold';
+                  color: $bright-blue;
+                  margin: 0;
+              }
+          }
+      }
+      ul .active{
+          background-color: $bright-blue;
+          a{
+              color: white;
+          }
+      }
+  }
+  }
+}
+@media only screen and (min-width: 768px) {
+  #check-container {
+    padding: 1rem;
+    .adminDashboard {
+      justify-content: space-evenly;
+    }
+    .graphContainer {
+      .picContainer {
+        height: 32rem;
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .recentAppointment{
+    grid-column: 2/3;
+  }
+  .blue-line{
+    background-color: $light-blue;
+    height: 0.5rem;
+  }
+}

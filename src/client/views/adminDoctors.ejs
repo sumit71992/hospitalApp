@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/adminMain.css">
+  <link rel="stylesheet" href="adminDoctor.css">
+  <link rel="stylesheet" href="/toaster.css">
+
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container" style="padding: 0 0 0 1rem;">
+      <div class="allusr">
+        <h3>All Users</h3>
+      </div>
+
+      <div class="doc-grid">
+        <% for(var i=0;i<user.adminData.allDoctors.length;i++){ %>
+        <div class="doc-details doc-details<%=i%>">
+          <img src="uploads/<%=user.adminData.allDoctors[i].Image%>" alt="">
+          <div class="controls userControls">
+            <a onclick="showForm('<%=i%>')">
+              <div>
+                <i class="fas fa-bars"></i>
+              </div>
+            </a>
+            <ul class="menuItem" id="menuItem<%= i %>" style="display: none;">
+              <li><a href="/editprofile/<%= user.adminData.allDoctors[i]._id %> " style="color: rgb(0, 0, 252);">Edit Profile</a>
+              </li>
+              <li><a href="/adminDoctorAllAppointments/<%= user.adminData.allDoctors[i]._id %> " style="color: rgb(0, 0, 252);">All Booked Appointments</a>
+            </li>
+              <li><a href="/adminUserAllAppointments/<%= user.adminData.allDoctors[i]._id %> " style="color: rgb(0, 0, 252);">
+                  Appointments </a></li>
+              <li><a href="/medicalreport/<%= user.adminData.allDoctors[i]._id %> " style="color: rgb(0, 0, 252);">Medical
+                  Reports</a>
+              </li>
+            </ul>
+          </div>
+          <h4 class="name"><%=user.adminData.allDoctors[i].name%></h4>
+          <ul>
+            <li><i class="fas fa-mobile-alt"></i><%=user.adminData.allDoctors[i].doctorData.speciality || "Info not available"%></li>
+            <li><i class="fas fa-envelope"></i><%=user.adminData.allDoctors[i].doctorData.qualifications || "Info not available"%></li>
+            <li><i class="fas fa-venus-mars"></i><%=user.adminData.allDoctors[i].doctorData.achievements || "Info not available"%></li>
+            <li><i class="fas fa-map-marker-alt"></i><%=user.adminData.allDoctors[i].doctorData.experience || "Info not available"%> Years
+            </li>
+            <li> <i class="fas fa-calendar-week"></i><%=user.adminData.allDoctors[i].doctorData.hospitals || "Info not available"%>
+            </li>
+            <li> <i class="fas fa-calendar-week"></i><%=user.adminData.allDoctors[i].city || "Info not available"%>
+            </li>
+            <li> <i class="fas fa-calendar-week"></i><%=user.adminData.allDoctors[i].doctorData.averageFees || "Info not available"%>
+            </li>
+          </ul>
+        </div>
+        <%}%>
+        </div>
+  
+    </div>
+    
+  </div>
+  <div class="blue-line"></div>
+  <script> 
+    async function showForm(param) {
+      const form = document.querySelector("#menuItem" + param);
+      if (form.style.display == "block")
+        form.style.display = "none";
+      else form.style.display = "block";
+    }
+  </script>
+</body>
+
+</html>

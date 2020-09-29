@@ -1,0 +1,285 @@
+h1, h2, h3, h4 {
+  font-family: 'Nexa-Bold';
+}
+
+h1 {
+  font-size: 1.7rem;
+  color: #2a2d3e;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 0 1.1rem;
+  color: #2a2d3e;
+  font-weight: 700;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  color: white;
+  margin: 1rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: 1rem;
+}
+
+label {
+  font-family: 'nexa-light';
+  font-size: 1rem;
+}
+
+p {
+  font-family: 'nexa-light';
+  line-height: 1.2rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  letter-spacing: 0.05rem;
+  color: #2a2d3e;
+}
+
+li {
+  font-family: 'nexa-light';
+}
+
+button {
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  background-color: #040427;
+  margin-top: 1rem;
+  border: none;
+  letter-spacing: 0.05rem;
+}
+
+img {
+  display: block;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+  }
+  h4 {
+    font-size: 1.1rem;
+  }
+  p {
+    font-family: 'nexa-light';
+    line-height: 1.3rem;
+    font-size: 1rem;
+    margin: 2rem 0;
+    letter-spacing: 0.06rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  h1, h2 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  h2 {
+    padding: 0;
+  }
+}
+
+#users {
+  color: gray;
+}
+
+#doctors {
+  color: gray;
+}
+
+#hospitals {
+  color: gray;
+}
+
+.active {
+  color: #0173b2;
+}
+
+#settings {
+  color: gray;
+}
+
+#dashboard {
+  color: #082dff;
+}
+
+#check-container {
+  background-color: #fff;
+}
+
+#check-container .adminDashboard {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0.4rem 1rem;
+}
+
+#check-container .adminDashboard .col {
+  display: grid;
+  grid-template-columns: 4rem auto;
+  align-items: center;
+  border-radius: 0.5rem;
+  width: 18rem;
+  margin: 0.5rem;
+  padding: 0.3rem 0 0.3rem 1rem;
+  background-color: whitesmoke;
+  box-shadow: 1rem 0.1rem 1rem 0 grey;
+}
+
+#check-container .adminDashboard .col i {
+  grid-row: 1/3;
+  font-size: 3rem;
+  color: #0173b2;
+}
+
+#check-container .adminDashboard .col span {
+  font-family: nexa-bold;
+  color: #0173b2;
+}
+
+#check-container .adminDashboard .col h4 {
+  color: #0173b2;
+}
+
+#check-container .graphContainer {
+  padding: 1rem;
+}
+
+#check-container .graphContainer h3 {
+  margin: 0 1rem;
+}
+
+#check-container .graphContainer .picContainer {
+  width: 100%;
+}
+
+#check-container .graphContainer .picContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#check-container .recentAppointment {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#check-container .recentAppointment table th {
+  background-color: black;
+}
+
+#check-container .recentAppointment table th tr td {
+  max-width: 23vw;
+  overflow-x: scroll;
+  padding: 0.5rem;
+  border: 0.1rem solid gray;
+  vertical-align: middle;
+}
+
+#check-container .recentAppointment table th tr td h4 {
+  color: white;
+}
+
+#check-container .recentAppointment table th tr ::-webkit-scrollbar {
+  width: 0;
+}
+
+#check-container .recentAppointment table tbody tr td {
+  max-width: 23vw;
+  overflow-x: scroll;
+  padding: 0.5rem;
+  border: 0.1rem solid gray;
+  vertical-align: middle;
+}
+
+#check-container .recentAppointment table tbody tr td h4 {
+  color: #000;
+}
+
+#check-container .recentAppointment table tbody tr td h4 a {
+  font-family: 'nexa-bold';
+  color: #0173b2;
+}
+
+#check-container .recentAppointment table tbody tr ::-webkit-scrollbar {
+  width: 0;
+}
+
+#check-container .recentAppointment table tbody tr:nth-child(even) {
+  background-color: #999;
+}
+
+#check-container .recentAppointment .pagination ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+
+#check-container .recentAppointment .pagination ul li {
+  border: 0.1rem solid #0173b2;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  margin: auto 0.2rem;
+}
+
+#check-container .recentAppointment .pagination ul li a {
+  font-family: 'nexa-bold';
+  color: #0173b2;
+  margin: 0;
+}
+
+#check-container .recentAppointment .pagination ul .active {
+  background-color: #0173b2;
+}
+
+#check-container .recentAppointment .pagination ul .active a {
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  #check-container {
+    padding: 1rem;
+  }
+  #check-container .adminDashboard {
+    justify-content: space-evenly;
+  }
+  #check-container .graphContainer .picContainer {
+    height: 32rem;
+  }
+  #check-container .graphContainer .picContainer img {
+    object-fit: cover;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .recentAppointment {
+    grid-column: 2/3;
+  }
+  .blue-line {
+    background-color: #9cbfda;
+    height: 0.5rem;
+  }
+}

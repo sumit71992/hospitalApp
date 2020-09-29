@@ -1,0 +1,48 @@
+@import "theme";
+.mainSchContainer{
+ display: flex;
+ padding-top: 1rem;
+ justify-content: center;
+ 
+  .schcontainer{
+    border: 1px solid $dark-blue;
+    padding: 0.5rem 1rem 1rem 1rem;
+    align-self: center;
+  h3{
+    color: $dark-blue;
+  }
+  .detail{
+    display: flex;
+    .item{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-right: 4rem;
+    }
+  }
+  .button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    button{
+      align-self: center;
+      width: fit-content;
+    }
+  }
+}
+}
+@media only screen and (min-width: 1025px){
+  .plus{
+    width: fit-content;
+  }
+  .bookAppointmentContainer{
+    margin-left: 0 !important;
+    .subSchedule{
+      padding:1rem 0 !important;
+    }
+    .carouselItem{
+      padding-top: 0 !important;
+    }
+  }
+  
+}

@@ -1,0 +1,33 @@
+@import "theme";
+@import "toaster";
+.profile-container {
+  border: none;
+}
+
+.description-heading {
+  -ms-grid-columns: 95% 5%;
+      grid-template-columns: 95% 5%;
+  border: none;
+  h3{
+    color: $bright-blue;
+  }
+}
+
+.description-heading label {
+  line-height: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .description-heading h3 {
+    font-size: 1.3rem;
+  }
+  .profile-description ul li {
+    margin: 1.5rem 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .profile-container {
+    margin: 1rem 5rem;
+  }
+}

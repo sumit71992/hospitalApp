@@ -1,0 +1,20 @@
+@import "theme";
+#users {
+  color: gray;
+}
+.adminCancel:hover{
+  cursor: pointer;
+}
+#doctors {
+  color: $bright-blue;
+}
+#hospitals{
+  color: gray;
+}
+#settings {
+  color: gray;
+}
+
+#dashboard {
+  color: gray;
+}

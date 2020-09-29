@@ -1,0 +1,371 @@
+h1, h2, h3, h4 {
+  font-family: 'Nexa-Bold';
+}
+
+h1 {
+  font-size: 1.7rem;
+  color: #2a2d3e;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 0 1.1rem;
+  color: #2a2d3e;
+  font-weight: 700;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  color: white;
+  margin: 1rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: 1rem;
+}
+
+label {
+  font-family: 'nexa-light';
+  font-size: 1rem;
+}
+
+p {
+  font-family: 'nexa-light';
+  line-height: 1.2rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  letter-spacing: 0.05rem;
+  color: #2a2d3e;
+}
+
+li {
+  font-family: 'nexa-light';
+}
+
+button {
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  background-color: #040427;
+  margin-top: 1rem;
+  border: none;
+  letter-spacing: 0.05rem;
+}
+
+img {
+  display: block;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+  }
+  h4 {
+    font-size: 1.1rem;
+  }
+  p {
+    font-family: 'nexa-light';
+    line-height: 1.3rem;
+    font-size: 1rem;
+    margin: 2rem 0;
+    letter-spacing: 0.06rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  h1, h2 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+  h2 {
+    padding: 0;
+  }
+}
+
+.fail-msg {
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  background-color: #fdfdfd;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  column-gap: 0.5rem;
+  animation: animation 3s ease-in;
+  animation-fill-mode: forwards;
+  padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+  border-left: 0.25rem solid red;
+  width: 16rem;
+}
+
+.fail-msg .icon {
+  margin-top: 0.5rem;
+  font-family: 'nexa-bold';
+  color: red;
+}
+
+.fail-msg .icon #close {
+  color: #7a7777;
+}
+
+.fail-msg .msg h4 {
+  color: red;
+  font-size: 1.1rem;
+  margin: 0;
+  font-family: 'nexa-bold';
+  text-align: center;
+}
+
+.fail-msg .msg span {
+  color: red;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+.res-msg {
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  background-color: #fdfdfd;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  column-gap: 0.5rem;
+  animation: animation 3s ease-in;
+  animation-fill-mode: forwards;
+  padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+  border-left: 0.25rem solid green;
+  width: 16rem;
+}
+
+.res-msg .icons {
+  margin-top: 0.5rem;
+  font-family: 'nexa-bold';
+  color: green;
+}
+
+.res-msg .icons #close {
+  color: #7a7777;
+}
+
+.res-msg .msgs {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.res-msg .msgs h4 {
+  color: green;
+  font-size: 1.1rem;
+  margin: 0;
+  font-family: 'nexa-bold';
+  text-align: center;
+}
+
+.res-msg .msgs span {
+  color: green;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+@keyframes animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.profile-container {
+  margin: 1rem;
+  border: 1px solid #a7a1a191;
+}
+
+.profile {
+  margin: 0.5rem;
+}
+
+.profile button {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  background-color: #021535e8;
+}
+
+.profile-image {
+  width: 100%;
+  height: 22rem;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-family: 'nexa-bold';
+  font-size: 1.5rem;
+  color: #0d4aa5;
+  position: relative;
+  text-align: left;
+  padding-left: 3.5rem;
+}
+
+.profile-name::before {
+  content: '';
+  border-bottom: 2px solid #0d7ac2;
+  display: inline-block;
+  width: 3.2rem;
+  margin-right: 0.2rem;
+  margin-left: -3.5rem;
+  position: absolute;
+  bottom: 0.8rem;
+}
+
+.profile-bio p {
+  padding: 0 0.5rem;
+  line-height: 1.4rem;
+  letter-spacing: 0.01rem;
+}
+
+.profile-description ul {
+  margin: 1rem 0.5rem;
+}
+
+.description-heading {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  border-top: 1px dashed lightgray;
+  border-bottom: 1px dashed lightgray;
+  padding: 0.7rem 0;
+  color: #0d7ac2;
+}
+
+.description-heading h3 {
+  margin: 0;
+  margin-right: auto;
+  text-align: left;
+  color: #0173b2;
+}
+
+.description-heading i {
+  margin: auto 0;
+  margin-right: auto;
+}
+
+.description-heading i:last-child {
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0.2rem 0.3rem 0.1rem;
+  font-size: 0.8rem;
+  background-color: #dfedfe;
+}
+
+.description {
+  text-align: left;
+  padding: 1rem 0.5rem;
+  background-color: #b3d4fc6b;
+}
+
+.description p {
+  letter-spacing: 0.01rem;
+  margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+    margin: 1rem 2rem;
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-template-rows: 1fr;
+  }
+  .profile {
+    grid-column: 2/3;
+  }
+  .profile-features {
+    grid-row: 1/2;
+  }
+  .profile-image {
+    height: 16rem;
+  }
+  .profile-name {
+    font-size: 1.8rem;
+    margin: 1rem 0 2rem;
+    padding-left: 0.5rem;
+  }
+  .profile-name::before {
+    margin-left: -1.5rem;
+    width: 1rem;
+  }
+  .description-heading {
+    grid-template-columns: 6% 84% 10%;
+    padding: 1.5rem 0;
+  }
+  .description-heading h3 {
+    font-size: 1.2rem;
+  }
+  .profile-bio p {
+    font-size: 0.9rem;
+    line-height: 1.8rem;
+    text-align: left;
+  }
+  button {
+    height: auto;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 6fr 2.5fr;
+    column-gap: 2rem;
+  }
+  .profile-container {
+    margin: 2rem 5rem;
+    padding: 2rem;
+  }
+  .profile-name::before {
+    margin-left: -2.5rem;
+    width: 2rem;
+  }
+  .profile-image {
+    height: 22rem;
+  }
+}

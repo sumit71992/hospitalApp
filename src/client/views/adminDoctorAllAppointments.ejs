@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/status.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/adminMain.css">
+  <link rel="stylesheet" href="/toaster.css">
+
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container" style="padding: 0 0 0 1rem;">
+      <div class="allusr">
+        <h3>All Appointments Of : <%=user.allDoctorAppointments.doctorName.toUpperCase()%></h3>
+      </div>
+      <div class="recentAppointment">
+        <table class="recentAppointmentsTable allDoctorAppointmentsTable">
+          <th>
+            <tr>
+              <td class="nameColumn">
+                <h4>Patient</h4>
+              </td>
+              <td>
+                <h4>Patient Phone Number</h4>
+              </td>
+              <td>
+                <h4>User</h4>
+              </td>
+              <td>
+                <h4> hospitalName </h4>
+              </td>
+              <td>
+                <h4>Date</h4>
+              </td>
+              <td>
+                <h4>Timing</h4>
+              </td>
+              <td>
+                <h4>Status</h4>
+              </td>
+              <td>
+                <h4>Action</h4>
+              </td>
+            </tr>
+          </th>
+          <tbody>
+            <% for(var i=0;i<user.allDoctorAppointments.allAppointments.length;i++){ %>
+            <tr>
+              <td>
+                <span> <%= user.allDoctorAppointments.allAppointments[i].patientName.toUpperCase() %></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.allAppointments[i].pMobileNumber %></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.userName[i].toUpperCase() %></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.allAppointments[i].hospital.toUpperCase() %></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.allAppointments[i].date.toDateString()%></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.slot[i].startTime %> to
+                  <%= user.allDoctorAppointments.slot[i].endTime %></span>
+              </td>
+              <td>
+                <span> <%= user.allDoctorAppointments.allAppointments[i].status %></span>
+              </td>
+              <td>
+                <%if(user.allDoctorAppointments.allAppointments[i].status==="Approved" ){%>
+                <h4 class="adminCancel"> <a onclick="showDialog('<%=user.allDoctorAppointments.allAppointments[i]._id%>')">Cancel</a>
+                </h4>
+                <form class="form"
+                  action="/adminCancelDoctorAppointment/<%=user.allDoctorAppointments.allAppointments[i]._id%>"
+                  method="POST" style="margin: 0; padding: 0; ">
+                  <div class="confirmationBox"
+                    id="confirmationBox<%=user.allDoctorAppointments.allAppointments[i]._id%>">
+                    <div class="cancelConfirmationBox">
+                      <h3>Cancel Appointment</h3>
+                      <h4>Are you sure you want to cancel your appointment?</h4>
+                      <div class="buttons">
+                        <button class="yes" type="submit">Yes</button>
+                        <button class="no"
+                          onclick="showDialog('<%=user.allDoctorAppointments.allAppointments[i]._id%>')"
+                          type="reset">No</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
+                <% }else {%>
+                <h4> <a></a> </h4>
+                <% } %>
+              </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+
+  
+    </div>
+    
+  </div>
+  <div class="blue-line"></div>
+  <script> 
+    async function showDialog(a) {
+      if (document.querySelector(".confirmationBox").style.display == "flex")
+        document.querySelector(".confirmationBox").style.display = "none";
+      else
+        document.querySelector(".confirmationBox").style.display = "flex";
+    }
+    async function showDialog(a) {
+      const confirmationBox = document.getElementById("confirmationBox" + a);
+      if (confirmationBox.style.display == "flex")
+        confirmationBox.style.display = "none";
+      else
+        confirmationBox.style.display = "flex";
+    }
+  </script>
+</body>
+
+</html>

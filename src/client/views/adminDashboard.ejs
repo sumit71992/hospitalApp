@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="editprofile.css">
+  <link rel="stylesheet" href="adminDashboard.css">
+  <link rel="stylesheet" href="toaster.css">
+  <link rel="stylesheet" href="medical.css">
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container">
+      <div class="adminDashboard">
+        <div class="col">
+          <i class="fas fa-briefcase-medical"></i>
+          <span>Users</span>
+          <h4><%=user.adminData.allUser.length%></h4>
+        </div>
+        <div class="col">
+          <i class="fas fa-syringe"></i>
+          <span>Doctors</span>
+          <h4><%=user.adminData.allDoctors.length%></h4>
+        </div>
+        <div class="col">
+          <i class="fas fa-user-md"></i>
+          <span>Hospitals</span>
+          <h4><%=user.adminData.allHospitals.length%></h4>
+        </div>
+        <div class="col">
+          <i class="fas fa-briefcase-medical"></i>
+          <span>Appointments</span>
+          <h4><%=user.adminData.allAppointments.length%></h4>
+        </div>
+      </div>
+      <div class="graphContainer">
+        <h3>Hospital Survey</h3>
+        <div class="picContainer">
+          <img src="canvas.png" alt="Graph">
+        </div>
+      </div>
+      <div class="graphContainer">
+        <h3>Patient Age</h3>
+        <div class="picContainer">
+          <img src="graph.png" alt="Graph">
+        </div>
+      </div>
+      <div class="recentAppointment">
+        <h3>Patients Enrolled</h3>
+        <table>
+          <th>
+            <tr>
+              <td>
+                <h4>Name</h4>
+              </td>
+              <td>
+                <h4>Phone Number</h4>
+              </td>
+              <td>
+                <h4>Email</h4>
+              </td>
+              <td>
+                <h4>Actions</h4>
+              </td>
+            </tr>
+          </th>
+          <tbody>
+            <% for(var i=0;i<user.adminData.recentUser.length;i++){ %>
+            <tr>
+              <td>
+                <h4> <%= user.adminData.recentUser[i].name.toUpperCase() %></h4>
+              </td>
+              <td>
+                <h4> <%= user.adminData.recentUser[i].phoneNumber %></h4>
+              </td>
+              <td>
+                <h4> <%= user.adminData.recentUser[i].email %></h4>
+              </td>
+              <td>
+                <h4> <a href="/adminUserAllAppointments/<%=user.adminData.recentUser[i]._id%>">Appointment
+                    Details</a></h4>
+              </td>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <ul>
+          <% for(var i=0;i<user.adminData.recentUserLength;i+=4){ %>
+            <li id="pagenationTo_<%=parseInt(i/4)+1%>">
+              <a class="pageIndexLink" href="/adminDashboard?page=<%=parseInt(i/4)+1%>"><%=parseInt(i/4)+1%></a>
+            </li>
+            <%}%>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="blue-line"></div>
+  <script>
+    async function showDialog() {
+      const confirmationBox = document.getElementById("confirmationBox");
+      if (confirmationBox.style.display == "flex")
+        confirmationBox.style.display = "none";
+      else
+        confirmationBox.style.display = "flex";
+    }
+    async function showForm(param) {
+      const form = document.querySelector("#confirmationBox" + param);
+      if (form.style.display == "flex")
+        form.style.display = "none";
+      else form.style.display = "flex";
+    }
+    window.onload = function () {
+      document.querySelectorAll("INPUT[type='radio']").forEach(function (rd) {
+        rd.addEventListener("mousedown", function () {
+          if (this.checked) {
+            this.onclick = function () {
+              this.checked = false
+            }
+          } else {
+            this.onclick = null
+          }
+        })
+      })
+    }
+    const pageIndex = window.location.href.split("page=")[1] ? window.location.href.split("page=")[1] : 1;
+    document.getElementById("pagenationTo_" + pageIndex).classList.add("active");
+
+
+    $(document).ready(function () { 
+  
+  $('ul.navbar-nav > li') 
+          .click(function (e) { 
+      $('ul.navbar-nav > li') 
+          .removeClass('active'); 
+      $(this).addClass('active'); 
+  }); 
+}); 
+  </script>
+</body>
+
+</html>

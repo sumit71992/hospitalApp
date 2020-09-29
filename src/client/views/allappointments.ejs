@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Appointments</title>
+  <base href="/">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/status.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/createSchedule.css">
+  <link rel="stylesheet" href="/allappointment.css">
+  <link rel="stylesheet" href="/theme.css">
+
+</head>
+
+<body>
+  <%- include ('headers')-%>
+  <%- include ('toaster')-%>
+  <div class="grid-container">
+    <%- include ('dashboard')-%>
+    <div id="check">
+      
+        
+      
+      <div>
+        <div class="upcoming">
+          <h3>Upcoming Appointments</h3>
+          <!--appointment start-->
+          <% for(var i=0; i<user.allAppData.allApp.length; i++){  
+          var date=new Date(user.allAppData.allApp[i].date); 
+          var dayName=date.toString().split(" ")[0];   date=date.toString().split(" ")[2]+ " "+date.toString().split(" ")[1]; %>
+          <% if(user.allAppData.allApp[i].status==="Approved"){%>
+
+          <div class="schedule-container">
+
+            <div class="schedule">
+
+              <div class="day">
+                <%=date%>
+              </div>
+              <div class="slot-details">
+                <div class="hdetails dname"><%=user.allAppData.docData[i].name%></div>
+                <div class="hdetails htime"> <%=dayName%> <%=  user.allAppData.subSchData[i].startTime%></div>
+                <div class="hdeatils"> <%=user.allAppData.allApp[i].hospital%></div>
+                <div class="confirmed">Confirmed</div>
+              </div>
+              <div id="button-flex">
+
+
+                <button onclick="showDialog('<%=user.allAppData.allApp[i]._id%>')" type="reset">Cancel</button>
+                <button
+                  onclick="window.location.href='/reschedule/<%=user.allAppData.allApp[i]._id%>'">Reschedule</button>
+
+              </div>
+
+            </div>
+            <form class="form" action="/cancel/<%=user.allAppData.allApp[i]._id%>" method="POST">
+              <div class="confirmationBox" id="confirmationBox<%=user.allAppData.allApp[i]._id%>">
+
+                <div class="cancelConfirmationBox">
+                  <h3>Cancel Appointment</h3>
+                  <h4>Are you sure you want to cancel your appointment?</h4>
+                  <div class="buttons">
+                    <button class="yes" type="submit">Yes</button>
+                    <button class="no" onclick="showDialog('<%=user.allAppData.allApp[i]._id%>')"
+                      type="reset">No</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+
+          <%}}%>
+          <!--appontment end   -->
+
+        </div>
+        <div class="completed">
+          <h3>Completed Appointments</h3>
+          <% for(var i=0;i<user.allAppData.allApp.length;i++){ 
+         var date=new Date(user.allAppData.allApp[i].date); var dayName=date.toString().split(" ")[0];   date=date.toString().split(" ")[2]+ " "+date.toString().split(" ")[1];  %>
+          <% if(user.allAppData.allApp[i].status==="Completed"){%>
+          <div class="schedule-container">
+
+            <div class="schedule">
+
+              <div class="day">
+                <%=date%>
+              </div>
+              <div class="slot-details">
+                <div class="hdetails dname"><%=user.allAppData.docData[i].name%></div>
+                <div class="hdetails htime"> <%=dayName%> <%=  user.allAppData.subSchData[i].startTime%></div>
+                <div class="hdeatils"> <%=user.allAppData.allApp[i].hospital%></div>
+                <div class="confirmed">Completed</div>
+              </div>
+              <div id="button-flex" style="display: none;">
+                <button onclick="showDialog('<%=user.allAppData.allApp[i]._id%>')" type="reset">Cancel</button>
+                <button
+                  onclick="window.location.href='/reschedule/<%=user.allAppData.allApp[i]._id%>'">Reschedule</button>
+              </div>
+            </div>
+          </div>
+          <%}}%>
+        </div>
+      </div>
+      
+      <div class="noapp" style="display: none;">
+        <h3>No Appointments Yet!</h3>
+      </div>
+    
+    </div>
+  </div>
+  <script>
+    async function showDialog(a) {
+      if (document.querySelector(".confirmationBox").style.display == "flex")
+        document.querySelector(".confirmationBox").style.display = "none";
+      else
+        document.querySelector(".confirmationBox").style.display = "flex";
+    }
+    async function showDialog(a) {
+      const confirmationBox = document.getElementById("confirmationBox" + a);
+      if (confirmationBox.style.display == "flex")
+        confirmationBox.style.display = "none";
+      else
+        confirmationBox.style.display = "flex";
+    }
+
+  </script>
+</body>
+
+</html>

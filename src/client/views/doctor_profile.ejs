@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Profile</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style2.css">
+    <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+   <%- include("headers")-%>
+    <div class="hero-section">
+        <h1>About <%=user.doc.name%></h1>
+        <h3>Home/Doctor Profile</h3>
+    </div>
+    <div class="profile-container">
+        <div class="profile-grid">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="/uploads/<%=user.doc.Image%>" alt="">
+                </div>
+                <button onclick="location.href='/appointment'">Book an appointment</button>
+            </div>
+            <div class="profile-features">
+                <div class="profile-bio">
+                    <div class="profile-name"><%=user.doc.name%></div>
+                    <p>
+                        <%=user.doc.doctorData.description%>
+
+                    </p>
+                </div>
+                <div class="profile-description">
+                    <ul>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-award icon heading-icon"></i>
+                                <h3>Specialization</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%=user.doc.doctorData.speciality%>
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-stethoscope heading-icon"></i>
+                                <h3>List Of Treatments</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%=user.doc.doctorData.treatments%>
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-hospital icon heading-icon"></i>
+                                <h3>Work Experience</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%=user.doc.doctorData.experience%> Years Of Experience.
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-star heading-icon"></i>
+                                <h3>Qualification</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%=user.doc.doctorData.qualifications%>
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-trophy heading-icon"></i>
+                                <h3>Awards</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%=user.doc.doctorData.awards%>
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-map-marker-alt heading-icon"></i>
+                                <h3>Location</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    <%if(user.doc.houseNumber !== null || user.doc.houseNumber !== undefined){%>
+                                    <%=user.doc.houseNumber%><%}%> <%if(user.doc.locality!== null){%><%=user.doc.locality%> <%}%> <%=user.doc.city%> <%=user.doc.state%> <%=user.doc.country%>
+
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="description-heading">
+                                <i class="fas fa-rupee-sign heading-icon"></i>
+                                <h3>Avg Fees</h3>
+                                <i class="fas fa-angle-down angle-icon accordion-btn"></i>
+                            </div>
+                            <div class="description hide">
+                                <p>
+                                    Rs. <%=user.doc.doctorData.averageFees%>
+
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class= "help">
+        <div class="help-desktop">
+            <h2>Need Help?</h2>
+            <p>Just let us know. We will be happy to assist you</p>
+        </div>
+        <button onclick="location.href='/submit_your_query'">Submit your enquiry</button>
+    </div>
+
+    <%- include("footer")-%>
+    <script src="/accordian.js"></script>
+    
+
+</body>
+</html>

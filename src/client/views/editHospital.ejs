@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/adminMain.css">
+  <link rel="stylesheet" href="editHospital.css">
+  <link rel="stylesheet" href="tagify.css">
+  <link rel="stylesheet" href="/toaster.css">
+
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <%-include ("toaster")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <div id="check-container" style="padding: 0 0 0 1rem;">
+      <div class="allusr">
+        <h3 style="text-align: center;">Verify/Edit Hospital</h3>
+      </div>
+      <form class="editHospital" action="/editHospital" method="POST" enctype="multipart/form-data">
+        <div class="input-box">
+          <label for="name">Hospital Name</label>
+          <input type="text" name="name" id="name" value="<%=user.hospitalData.name%>">
+        </div>
+        <div class="input-box">
+          <label for="description">Hospital Description</label>
+          <textarea name="description" id="description"><%=user.hospitalData.description%></textarea>
+        </div>
+        <div class="input-box">
+          <label for="name">Speciality</label>
+          <input type="text" name="speciality" id="speciality" value="<%=user.hospitalData.speciality%>">
+        </div>
+        <div class="input-box">
+          <label for="name">Treatments</label>
+          <input type="text" name="treatment" id="treatment" value="<%=user.hospitalData.treatments%>">
+        </div>
+        <div class="input-box">
+          <label for="name">No. of beds</label>
+          <input type="number" name="bed" id="bed" value="<%=user.hospitalData.beds%>">
+        </div>
+        <div class="input-box">
+          <label for="name">Address</label>
+          <input type="text" name="address" id="address" value="<%=user.hospitalData.address%>">
+        </div>
+        <div class="input-box">
+          <label for="name">Hospital Pic</label>
+          <input type="file" name="Image" id="Image" value="<%=user.hospitalData.hospitalPic%>">
+        </div>
+        <div class="btn">
+          <button onclick="tagifyConvert()" type="submit">Submit<i class="fas fa-arrow-right"></i></button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="blue-line"></div>
+  <script src="tagify.min.js"></script>
+  <script>
+    function tagifyConvert() {
+      const treatments = document.querySelector("#treatment");
+      const speciality = document.querySelector("#speciality");
+      speciality.value = (JSON.parse(speciality.value)).map(({ value }) => value);
+      treatments.value = (JSON.parse(treatments.value)).map(({ value }) => value);
+    }
+
+    var speciality = document.querySelector('input[name=speciality]');
+    var tagify = new Tagify(speciality);
+    var treatment = document.querySelector('input[name=treatment]');
+    var tagify = new Tagify(treatment);
+  </script>
+</body>
+
+</html>

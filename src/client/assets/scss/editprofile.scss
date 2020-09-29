@@ -1,0 +1,170 @@
+form{
+  padding: 1rem;
+  text-align: left;
+  background-color: white;
+  overflow-y: scroll;
+}
+.heading{
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  button, h3{
+    margin: 0;
+    width: auto;
+  }
+  button{
+    background-color: #0568aa;
+    font-family: 'nexa-light';
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+}
+.profile_photo_grid{
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 1rem; 
+  font-family: 'nexa-light';
+  label{
+    font-family: 'nexa-bold';
+    font-size: 1rem;
+    color : #4c7fa1;
+    margin: 0.5rem 0;
+  }
+}
+
+#image{
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+}
+input{
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  font-family: 'nexa-light';
+  font-size: 0.8rem;
+  box-sizing: border-box;
+}
+textarea{
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  font-family: 'nexa-light';
+  font-size: 0.8rem;
+  box-sizing: border-box;
+}
+select:focus ,input:focus{
+  border : 2px solid #f1c70a;
+}
+
+input[type="file"]{
+  display : none;
+}
+
+.input-row{
+  position : relative;
+  i{
+    position : absolute;
+    right : 1rem;
+    top: 2.3rem;
+  }
+}
+select{
+  margin: 1rem 0;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-family: 'nexa-light';
+  font-size: 0.8rem;
+}
+option{
+  width: 100%;
+  font-size: 0.8rem;
+}
+label{
+  display: block;
+}
+
+#number{
+  display: flex;
+  justify-content: space-between;
+}
+
+#profile{
+  color: #0568aa;
+}
+
+@media only screen and (min-width: 768px){
+  
+  .grid-container{
+      display: grid;
+      grid-template-columns: 2fr 5fr;
+      padding: 1rem 2rem;
+      background-color: whitesmoke;
+      column-gap: 1rem;
+      h3{
+        font-size: 1.2rem;
+    }
+  }
+  .heading{
+      padding-bottom: 1rem;
+      button{
+        font-size: 0.8rem;
+    }
+  }
+  form{
+      height: 40rem;
+  }
+  input{
+      height: auto;
+  }
+
+  label{
+      font-size: 0.8rem;
+  }
+  .field-set{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      row-gap: 1.5rem;
+      column-gap: 3rem;
+      margin: 2rem 1rem;
+  }
+}
+@media only screen and (min-width: 1024px){
+
+  .grid-container{
+      display: grid;
+      grid-template-columns: 20% 80%;
+      padding: 2rem 5rem;
+      background-color: whitesmoke;
+      column-gap: 1rem;
+  }
+  .heading{
+      padding-bottom: 1rem;
+      h4{
+        margin: 0;
+      }
+  }
+  form{
+      height: 40rem;
+  }
+  input{
+      height: auto;
+  }
+
+  label{
+      font-size: 0.8rem;
+  }
+  .field-set{
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      row-gap: 1.5rem;
+      column-gap: 3rem;
+      margin: 2rem 1rem;
+  }
+}

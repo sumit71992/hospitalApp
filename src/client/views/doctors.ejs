@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/doctor.css">
+    <link rel="stylesheet" href="/toaster.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clocklet@0.2.6/css/clocklet.min.css">
+    <link rel="stylesheet" href="/theme.css">
+    <title>Doctors</title>
+</head>
+
+<body>
+    <%- include("headers")-%>
+    <div class="find-section1 hide-mobile show-desktop show-tab">
+        <%- include("toaster")-%>
+        <h3>Cardiac Surgeons in <a href="#">Delhi</a></h3>
+    </div>
+    <section id="doc2">
+        <div class="desktop-view">
+            <div class="doc-header">
+                <h4>Home / Doctor List</h4>
+                <form action="/sort" method="post">
+                    <select id="sort-by" name="sort" onchange="this.form.submit()">
+                        <option value="">Sort By</option>
+                        <option value="name-asc">Name(Assc.)</option>
+                        <option value="name-desc">Name(Desc.)</option>
+                        <option value="doctorData.averageFees-asc">Average Fee(Assc.)</option>
+                        <option value="doctorData.averageFees-desc">Average Fee(Desc.)</option>
+                        <option value="doctorData.experience-asc">Experience(Assc.)</option>
+                        <option value="doctorData.experience-desc">Experience(Desc.)</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="grid-container">
+                <div class="filters">
+                    <div id="filter-by">Filter By</div>
+                    <ul class="selected-filters" id="selected-filters">
+                        <% if(user.filter)
+                            for(var i=0; i<user.filter.length;i++){%>
+                        <li class="filter" id="selected-filters">
+                            <div><%=user.filter[i]%></div>
+                            <i class="fas fa-times" onclick="removeThis(this)"></i>
+                        </li>
+                        <%}%>
+                    </ul>
+                    <%      
+                    var allCity =[], allTreatments =[], allHospitals = [];
+                      for(var i=0;i<user.doctorListFilter.length;i++){
+                          if(allCity.indexOf(user.doctorListFilter[i].city)===-1)
+                          allCity.push(user.doctorListFilter[i].city);
+                          if(user.doctorListFilter[i].doctorData.treatments!==null)
+                              for(var j=0;j<user.doctorListFilter[i].doctorData.treatments.length;j++){
+                                  if(allTreatments.indexOf(user.doctorListFilter[i].doctorData.treatments[j])===-1)
+                                      allTreatments.push(user.doctorListFilter[i].doctorData.treatments[j]);
+                          }
+                          if(user.doctorListFilter[i].doctorData.hospitals!==null)
+                            for(var j=0;j<user.doctorListFilter[i].doctorData.hospitals.length;j++){
+                                if(allHospitals.indexOf(user.doctorListFilter[i].doctorData.hospitals[j])===-1)
+                                    allHospitals.push(user.doctorListFilter[i].doctorData.hospitals[j]);
+                          }
+                      }
+                  %>
+                        <form action="/filterDoc" method="POST">
+                            <div class="specification">
+                                <div class="grid">
+                                    <h4>Location</h4>
+                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-minus"></i>
+                                </div>
+                                <ul>
+                                    <%for(var i=0;i<allCity.length;i++){%>
+                                    <li class="filter-flex">
+                                        <input type="checkbox" name="city[]" id="<%=allCity[i]%>"
+                                            value="<%=allCity[i]%>" onchange="this.form.submit()">
+                                        <label for="<%=allCity[i]%>"><%=allCity[i]%></label>
+                                    </li>
+                                    <%} %>
+                                </ul>
+                                <label id="show" onclick="expand(this)">+Show more</label>
+                                <hr>
+                            </div>
+
+                            <div class="specification">
+                                <div class="grid">
+                                    <h4>Treatment</h4>
+                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-minus"></i>
+                                </div>
+
+                                <ul>
+                                    <%for(var i=0;i<allTreatments.length;i++){%>
+                                    <li class="filter-flex">
+                                        <input type="checkbox" name="treatments[]" id="<%=allTreatments[i]%>"
+                                            value="<%=allTreatments[i]%>" onchange="this.form.submit()">
+                                        <label for="<%=allTreatments[i]%>"><%=allTreatments[i]%></label>
+                                    </li>
+                                    <%}%>
+                                    </ul>
+                                    <label id="show" onclick="expand(this)">+Show more</label>
+                                    <hr>
+                                
+                            </div>
+                                <div class="specification">
+                                    <div class="grid">
+                                        <h4>Hospitals</h4>
+                                        <i class="fas fa-search"></i>
+                                        <i class="fas fa-minus"></i>
+                                    </div>
+                                    <ul>  
+                                        <%for(var i=0;i<allHospitals.length;i++){%>
+                                    <li class="filter-flex">
+                                        <input type="checkbox" name="hospitals[]" id="<%=allHospitals[i]%>"
+                                            value="<%=allHospitals[i]%>" onchange="this.form.submit()">
+                                        <label for="<%=allHospitals[i]%>"><%=allHospitals[i]%></label>
+                                    </li>
+                                    <%}%>
+                                    </ul>
+                                    <label id="show" onclick="expand(this)">+Show more</label>
+                                    <hr>
+                                </div>
+                                <div class="specification">
+                                    <div class="grid">
+                                        <h4>Years of Experience</h4>
+                                        <i class="fas fa-search"></i>
+                                        <i class="fas fa-minus"></i>
+                                    </div>
+                                    <ul>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="30" value="30"
+                                            onchange="this.form.submit()">
+                                        <label for="experience1">30+</label>
+                                    </div>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="25" value="25"
+                                            onchange="this.form.submit()">
+                                        <label for="experience2">25+</label>
+                                    </div>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="20" value="20"
+                                            onchange="this.form.submit()">
+                                        <label for="experience3">20+</label>
+                                    </div>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="15" value="15"
+                                            onchange="this.form.submit()">
+                                        <label for="experience4">15+</label>
+                                    </div>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="10" value="10"
+                                            onchange="this.form.submit()">
+                                        <label for="experience5">10+</label>
+                                    </div>
+                                    <div class="filter-flex">
+                                        <input type="checkbox" name="experience[]" id="5" value="5"
+                                            onchange="this.form.submit()">
+                                        <label for="experience6">5+</label>
+                                    </div>
+                                </ul>
+                                    <label id="show" onclick="expand(this)">+Show more</label>
+                                    <hr>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="doctors-grid">
+                            <%for(var i=0; i<user.iPage.length;i++){%>
+
+
+                                    <div class="doc-details doc-div-style">
+                                        <div class="details-grid">
+                                            <h4 class="name"
+                                                onclick="window.location.href='/aboutDoc/<%=user.iPage[i]._id%>'">
+                                                <%=user.iPage[i].name%></h4>
+                                            <i class="fas fa-certificate"></i>
+                                            <p class="degree2">
+                                                <%=user.iPage[i].doctorData.speciality%>
+                                            </p> <img class="certificate"
+                                                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/certificate.png"
+                                                alt="">
+                                            <p class="degree1">
+                                                <%=user.iPage[i].doctorData.qualifications%>
+                                            </p>
+                                            <i class="far fa-clock"></i>
+                                            <p class="experience">
+                                                <%=user.iPage[i].doctorData.experience%> Years of Experience
+                                            </p>
+                                            <i class="far fa-hospital"></i>
+                                            <p class="doc-hospital">
+                                                <%=user.iPage[i].doctorData.hospitals%>
+                                            </p>
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <p class="doc-location">
+                                                <%=user.iPage[i].city%>
+                                            </p>
+                                        </div>
+                                        <button
+                                            onclick="showDocSchedule('carouselContainer<%=i%>__allCarouselContainer<%=i%>','<%=user.iPage[i]._id%>')">Book
+                                            an
+                                            appointment</button>
+                                        <div class="doc-image">
+                                            <img src="/uploads/<%=user.iPage[i].Image%>" alt="doc pic">
+                                        </div>
+                                        <!--boook appointment Start-->
+
+                                        <div class="bookAppointmentContainer" style="display: none;">
+                                            <div class="carouselContainer allScheduleContainer"
+                                                id="carouselContainer<%=i%>">
+                                                <div class="carouselButton">
+                                                    <div class="carouselLeftButton"
+                                                        onclick="moveCarousel('left','carouselContainer<%=i%>__allCarouselContainer<%=i%>')">
+                                                        <i class="fas fa-less-than"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="allCarouselItems allCarouselItems<%=i%>"
+                                                    id="carouselContainer<%=i%>__allCarouselContainer<%=i%>">
+                                                </div>
+                                                <div class="carouselButton">
+                                                    <div class="carouselRightButton"
+                                                        onclick="moveCarousel('right','carouselContainer<%=i%>__allCarouselContainer<%=i%>')">
+                                                        <i class="fas fa-greater-than"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="subScheduleContainer" id="subScheduleContainer<%=i%>">
+                                            </div>
+                                            <div class="hospital">
+                                                <span></span>
+                                            </div>
+                                        </div>
+
+                                        <!--boook appointment End-->
+                                    </div>
+                                    <%}%>
+                                            <div class="pagination">
+                                                <ul>
+                                                    <% for(var i=0;i<user.doctorList.length;i+=4){ %>
+                                    <li id="pTo_<%=parseInt(i/4)+1%>">
+                                        <a class="pageIndexLink"
+                                            href="/doctors/<%=parseInt(i/4)+1%>"><%=parseInt(i/4)+1%></a>
+                                    </li>
+                                    <%}%>
+                                    </ul>
+                                    </div>
+                    </div> 
+                    
+                </div>
+                
+            </div>
+    </section>
+    <section id="doc3">
+        <div class="help">
+            <div class="help-desktop">
+                <h2>Need Help?</h2>
+                <p>Just let us know. We will be happy to assist you</p>
+            </div>
+            <button onclick="location.href='/submit_your_query'">Submit your query</button>
+        </div>
+    </section>
+    <%- include("footer")-%>
+                                    <script>
+
+                                        async function expand(item) {
+                                            if (item.parentElement.children[1].style.maxHeight !== "unset") {
+                                                {
+                                                    item.parentElement.children[1].style.maxHeight = "unset";
+                                                    item.innerHTML = "-Show Less";
+                                                    item.style.color = "gray";
+                                                }
+                                            }
+                                            else {
+                                                item.parentElement.children[1].style.maxHeight = "10rem";
+                                                item.innerHTML = "+Show More";
+                                                item.style.color = "#0cc5f3";
+                                            }
+                                        }
+                                    </script>
+                                    <script src="/doctor.js"></script>
+
+</body>
+
+</html>

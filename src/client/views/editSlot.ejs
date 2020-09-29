@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Slots</title>
+  <base href="/">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/editprofile.css">
+  <link rel="stylesheet" href="/toaster.css">
+  <link rel="stylesheet" href="/createSchedule.css">
+</head>
+
+<body>
+  <%-include ("headers")-%>
+  <div class="grid-container">
+    <%-include ("dashboard")-%>
+    <%-include ("toaster")-%>
+    <div id="check">
+        <form action="/createSchedule" id="form" method="POST" onsubmit="">
+          <div id="time">
+            <input type="time" name="start_time" id="start_time" placeholder="">
+            <input type="time" name="end_time" id="end_time" placeholder="">
+          </div>
+
+          <input type="number" name="duration" id="duration" placeholder="">
+          <input type="number" name="duration" id="duration" placeholder="">
+          <button> type="submit">Edit Slot</button>
+        </form>
+    </div>
+  </div>
+</body>
+
+</html>
