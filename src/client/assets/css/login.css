@@ -203,13 +203,15 @@ img {
 }
 
 .display-flex {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #5aa9eb;
+  height: 100%;
 }
-
+body{
+  height: 100vh;
+}
 .contact-form {
   width: 85%;
   max-width: 45rem;
@@ -267,26 +269,27 @@ img {
 }
 
 .login-way {
-  margin: 1.5rem 0 0 0;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
 }
 
 .login-way .otp-login a {
-  font-family: 'nexa-bold';
-  color: #399dee;
-  font-size: 1.2rem;
+  font-family: 'nexa-light';
+  color: #1994f8;
+  font-size: 0.8rem;
   text-decoration: none;
+  letter-spacing: 1;
 }
 
 .login-way .forgot-pass {
-  font-family: 'nexa-bold';
-  color: #399dee;
-  font-size: 1.2rem;
+  font-family: 'nexa-light';
+  color: #1994f8;
+  font-size: 0.8rem;
   letter-spacing: 0;
   background-color: transparent;
-  width: fit-content;
-  height: fit-content;
+  width: max-content;
+  height: max-content;
   margin: 0;
   padding: 0;
   border: none;
@@ -319,7 +322,7 @@ img {
   cursor: pointer;
   position: absolute;
   right: 1rem;
-  top: 1.3rem;
+  top: 0.75rem;
 }
 
 .signup-option {
@@ -345,29 +348,25 @@ img {
 }
 
 @media only screen and (min-width: 768px) {
-  .display-flex {
-    height: 61.5rem;
-  }
+  
   .contact-form {
     margin: auto;
   }
   .contact-form form {
     padding: 2.5rem;
   }
-  .contact-form h3 {
-    padding: 2.5rem 0;
-  }
+  
   .contact-form button {
     font-size: 1.5rem;
     letter-spacing: 0.3rem;
-    padding: 1.5rem 2rem;
+    padding: 0.8rem 2rem;
     margin-top: 2rem;
   }
   .input-box {
     margin-bottom: 0.8rem;
   }
   .input-box input, .input-box select {
-    padding: 1.5rem;
+    padding: 0.7rem;
     font-size: 0.9rem;
   }
   .mobile i {
@@ -397,6 +396,7 @@ img {
     margin-top: 0;
     width: 100%;
   }
+  
   header a {
     margin: auto 0 auto 0.7rem;
   }
@@ -410,15 +410,24 @@ img {
     margin-right: 5rem;
     column-gap: 0.5rem;
   }
-  .display-flex {
-    height: 110vh;
-  }
   .contact-form {
-    margin-top: 1rem;
-    width: 50%;
+    width: 40%;
     padding: 0rem;
+    box-shadow: 2px 2px 2px 2px darkgray;
   }
   .contact-form button {
     font-size: 1rem;
+    
+  }
+  .login-way .otp-login a {
+    
+    font-size: 1rem;
+    
+  }
+  
+  .login-way .forgot-pass {
+    
+    font-size: 1rem;
+    
   }
 }

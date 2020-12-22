@@ -225,12 +225,13 @@ header {
 
 header a img {
   height: 1.5rem;
+  margin-left: 1rem;
 }
 
 header i {
   color: #525659;
   padding-top: 0.3rem;
-  margin-right: 0.4rem;
+  margin-right: 1rem;
 }
 
 /*side menu*/
@@ -834,7 +835,13 @@ input {
     grid-template-columns: 3fr 4fr;
     grid-template-rows: auto auto auto auto auto auto auto;
     grid-column-gap: 2%;
-    grid-template-areas: "button1 image" "button2 image" "button3 image" "button4 image" "button5 image" "button6 image" "button7 image";
+    grid-template-areas: "button1 image"
+ "button2 image"
+ "button3 image"
+ "button4 image"
+ "button5 image"
+ "button6 image"
+ "button7 image";
   }
   .btn1 {
     grid-area: button1;
@@ -1106,7 +1113,13 @@ input {
     grid-template-columns: 3fr 5fr;
     grid-template-rows: 7rem 7rem 7rem 7rem 7rem 7rem 7rem;
     grid-column-gap: 0;
-    grid-template-areas: "button1 image" "button2 image" "button3 image" "button4 image" "button5 image" "button6 image" "button7 image";
+    grid-template-areas: "button1 image"
+ "button2 image"
+ "button3 image"
+ "button4 image"
+ "button5 image"
+ "button6 image"
+ "button7 image";
   }
   .detail-block {
     text-align: center;
