@@ -2,13 +2,15 @@
 @import "toaster";
 
 .display-flex{
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #5aa9eb;
 }
-
+body{
+    height: 100vh;
+}
 .contact-form{
     width: 85%;
     max-width: 45rem;
@@ -60,26 +62,28 @@
         }
     }
     .login-way{
-        margin: 1.5rem 0 0 0;
+        margin-top: 1.5rem;
         display: flex;
         justify-content: space-between;
         .otp-login{
             a{
-            font-family: 'nexa-bold';
-            color: #399dee;
-            font-size: 1.2rem;
+            font-family: 'nexa-light';
+            color: #1994fd;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-decoration: none;
             }
         }
         .forgot-pass{
             
-            font-family: 'nexa-bold';
-            color: #399dee;
-            font-size: 1.2rem;
+            font-family: 'nexa-light';
+            color: #1994fd;
+            font-size: 0.8rem;
             letter-spacing: 0;
+            font-weight: 600;
             background-color: transparent;
-            width: fit-content;
-            height: fit-content;
+            width: max-content;
+            height: max-content;
             margin: 0;
             padding: 0;
             border: none;
@@ -109,8 +113,8 @@
         color: $light-blue;
         cursor: pointer;
         position: absolute;
-        right: 1rem;
-        top: 1.3rem;
+        right: 0.75rem;
+        top: 0.6rem;
 
         
     }
@@ -136,28 +140,22 @@
 }
 
 @media only screen and (min-width: 768px){
-    .display-flex{
-        height: 61.5rem;
-    }
     .contact-form{
         margin: auto;
         form{
             padding:2.5rem;
         }
-        h3{
-            padding: 2.5rem 0;
-        }
         button{
             font-size: 1.5rem;
             letter-spacing: 0.3rem;
-            padding: 1.5rem 2rem;
+            padding: 0.8rem 2rem;
             margin-top: 2rem;
         }
     }
     .input-box{
         margin-bottom: 0.8rem;
         input, select{
-            padding: 1.5rem;
+            padding: 0.7rem;
             font-size: 0.9rem;
         }
     }
@@ -175,7 +173,19 @@
         letter-spacing: -0.5px;
         font-size:1rem;
     }
-
+    .login-way{
+        
+        .otp-login{
+            a{
+                font-size: 1rem;
+                font-family: "nexa-bold";
+            }
+        }
+        .forgot-pass{
+            font-size: 1rem;
+            font-family: "nexa-bold";
+        }
+    }
     .copyright{
         font-size: 1rem;
         letter-spacing: 0.05rem;
@@ -203,16 +213,25 @@
             column-gap: 0.5rem;
         }
     }
-    .display-flex{
-        height: 110vh;
-    }
     .contact-form{
-        margin-top: 1rem;
-        width: 50%;
+        width: 40%;
         padding: 0rem;
-        
+        box-shadow: 2px 2px 2px 2px darkgray;
         button{
             font-size: 1rem;
+        }
+    }
+    .login-way{
+        
+        .otp-login{
+            a{
+                font-size: 1rem;
+                font-family: "nexa-bold";
+            }
+        }
+        .forgot-pass{
+            font-size: 1rem;
+            font-family: "nexa-bold";
         }
     }
 }

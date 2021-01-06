@@ -203,15 +203,17 @@ img {
 }
 
 .display-flex {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #5aa9eb;
-  height: 100%;
 }
-body{
+
+body {
   height: 100vh;
 }
+
 .contact-form {
   width: 85%;
   max-width: 45rem;
@@ -276,17 +278,18 @@ body{
 
 .login-way .otp-login a {
   font-family: 'nexa-light';
-  color: #1994f8;
+  color: #1994fd;
   font-size: 0.8rem;
+  font-weight: 600;
   text-decoration: none;
-  letter-spacing: 1;
 }
 
 .login-way .forgot-pass {
   font-family: 'nexa-light';
-  color: #1994f8;
+  color: #1994fd;
   font-size: 0.8rem;
   letter-spacing: 0;
+  font-weight: 600;
   background-color: transparent;
   width: max-content;
   height: max-content;
@@ -321,8 +324,8 @@ body{
   color: #9cbfda;
   cursor: pointer;
   position: absolute;
-  right: 1rem;
-  top: 0.75rem;
+  right: 0.75rem;
+  top: 0.6rem;
 }
 
 .signup-option {
@@ -348,14 +351,12 @@ body{
 }
 
 @media only screen and (min-width: 768px) {
-  
   .contact-form {
     margin: auto;
   }
   .contact-form form {
     padding: 2.5rem;
   }
-  
   .contact-form button {
     font-size: 1.5rem;
     letter-spacing: 0.3rem;
@@ -381,6 +382,14 @@ body{
     letter-spacing: -0.5px;
     font-size: 1rem;
   }
+  .login-way .otp-login a {
+    font-size: 1rem;
+    font-family: "nexa-bold";
+  }
+  .login-way .forgot-pass {
+    font-size: 1rem;
+    font-family: "nexa-bold";
+  }
   .copyright {
     font-size: 1rem;
     letter-spacing: 0.05rem;
@@ -396,7 +405,6 @@ body{
     margin-top: 0;
     width: 100%;
   }
-  
   header a {
     margin: auto 0 auto 0.7rem;
   }
@@ -417,17 +425,13 @@ body{
   }
   .contact-form button {
     font-size: 1rem;
-    
   }
   .login-way .otp-login a {
-    
     font-size: 1rem;
-    
+    font-family: "nexa-bold";
   }
-  
   .login-way .forgot-pass {
-    
     font-size: 1rem;
-    
+    font-family: "nexa-bold";
   }
 }

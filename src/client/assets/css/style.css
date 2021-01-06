@@ -112,6 +112,7 @@ img {
   padding: 0.5rem 0.5rem 0.5rem 0.2rem;
   border-left: 0.25rem solid red;
   width: 16rem;
+  z-index: 100;
 }
 
 .fail-msg .icon {
@@ -152,6 +153,7 @@ img {
   padding: 0.5rem 0.5rem 0.5rem 0.2rem;
   border-left: 0.25rem solid green;
   width: 16rem;
+  z-index: 100;
 }
 
 .res-msg .icons {
@@ -203,12 +205,12 @@ img {
 }
 
 @font-face {
-  font-family: 'nexa-light';
+  font-family: "nexa-light";
   src: url("Nexa-Light.otf");
 }
 
 @font-face {
-  font-family: 'nexa-bold';
+  font-family: "nexa-bold";
   src: url("Nexa-Bold.otf");
 }
 
@@ -225,16 +227,50 @@ header {
 
 header a img {
   height: 1.5rem;
-  margin-left: 1rem;
+  margin-left: 0.7rem;
 }
 
 header i {
   color: #525659;
   padding-top: 0.3rem;
-  margin-right: 1rem;
+  margin-right: 0.7rem;
 }
 
 /*side menu*/
+.subM {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #31373b;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.subM p {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 1em 0.3em 1em 2em;
+  background-color: #31373b;
+  margin: 0;
+}
+
+.subM a {
+  padding-right: 0.3rem;
+}
+
+.subM i {
+  padding-top: 0;
+  color: #bbbbbb;
+}
+
+ol {
+  background-color: #31373b;
+}
+
+ol li {
+  padding-left: 2.5rem;
+}
+
 nav ul {
   position: fixed;
   width: 100%;
@@ -259,6 +295,10 @@ nav ul li a {
 nav ul li a:hover {
   cursor: pointer;
   background-color: #41494e;
+}
+
+nav ul li a i {
+  color: #d8d8d8;
 }
 
 .exit-btn {
@@ -320,9 +360,9 @@ nav ul li a:hover {
 }
 
 .location i {
-  font-size: .7rem;
+  font-size: 0.7rem;
   background-color: white;
-  padding: .75rem;
+  padding: 0.75rem;
   outline: none;
 }
 
@@ -427,7 +467,7 @@ input {
   align-items: center;
   text-decoration: none;
   border: 1px solid #bebaba;
-  margin: .3rem 0;
+  margin: 0.3rem 0;
   border-radius: 10px;
   height: 2.5rem;
   padding: 0.5rem 0;
@@ -437,7 +477,7 @@ input {
 .link-btn label {
   margin: auto 0;
   color: #bebaba;
-  font-family: 'nexa-bold';
+  font-family: "nexa-bold";
   font-size: 1.1rem;
 }
 
@@ -484,11 +524,15 @@ input {
   background-color: #040427;
 }
 
-.details, .doctors, .treatment-component, .services-component {
+.details,
+.doctors,
+.treatment-component,
+.services-component {
   padding: 2rem 1rem;
 }
 
-.doctors h2, .doctors p {
+.doctors h2,
+.doctors p {
   color: white;
 }
 
@@ -525,7 +569,7 @@ input {
 .doc-details .name {
   padding-left: 0;
   color: #57b8f8;
-  font-family: 'nexa-bold';
+  font-family: "nexa-bold";
   text-align: left;
   margin: 0.7rem 0;
 }
@@ -538,7 +582,8 @@ input {
   bottom: 0.4rem;
 }
 
-.treatment-component h2, .treatment-component p {
+.treatment-component h2,
+.treatment-component p {
   color: #040427;
 }
 
@@ -578,7 +623,7 @@ input {
 }
 
 .disease p:first-child {
-  font-family: 'nexa-bold';
+  font-family: "nexa-bold";
   margin-bottom: 0.1rem;
 }
 
@@ -622,7 +667,7 @@ input {
 
 .service-name {
   color: #6b6767;
-  font-family: 'nexa-bold';
+  font-family: "nexa-bold";
   font-size: 0.8rem;
   margin: 0 auto 1.5rem auto;
 }
@@ -647,7 +692,7 @@ input {
   border-radius: 5px;
   border-style: none;
   font-size: 0.9rem;
-  font-family: 'nexa-light';
+  font-family: "nexa-light";
   font-weight: bold;
   margin: auto;
 }
@@ -696,13 +741,23 @@ input {
 
 .copyright {
   margin-top: 1rem;
-  font-family: 'nexa-light';
+  font-family: "nexa-light";
   color: #a39f9f;
   font-size: 0.95rem;
 }
 
 @media only screen and (min-width: 768px) {
-  .find-section, .details, .doctors, .treatment-component, .services-component {
+  header a img {
+    margin-left: 1rem;
+  }
+  header i {
+    margin-right: 1rem;
+  }
+  .find-section,
+  .details,
+  .doctors,
+  .treatment-component,
+  .services-component {
     padding: 2rem 1.5rem;
   }
   nav ul {
@@ -817,7 +872,7 @@ input {
     grid-column: 1/2;
     grid-row: 2/3;
     font-size: 1rem;
-    font-family: 'nexa-light';
+    font-family: "nexa-light";
     letter-spacing: 0.08rem;
   }
   .social-icons {
@@ -835,13 +890,7 @@ input {
     grid-template-columns: 3fr 4fr;
     grid-template-rows: auto auto auto auto auto auto auto;
     grid-column-gap: 2%;
-    grid-template-areas: "button1 image"
- "button2 image"
- "button3 image"
- "button4 image"
- "button5 image"
- "button6 image"
- "button7 image";
+    grid-template-areas: "button1 image" "button2 image" "button3 image" "button4 image" "button5 image" "button6 image" "button7 image";
   }
   .btn1 {
     grid-area: button1;
@@ -885,7 +934,35 @@ input {
   .treatment-menu {
     position: relative;
   }
+  .treatment-menu .subM {
+    background-color: white;
+  }
+  .treatment-menu .subM p {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: #4d4949;
+    font-family: "nexa-light";
+    font-size: 1rem;
+    letter-spacing: 0;
+    padding-right: 0.4rem;
+  }
+  .treatment-menu a {
+    padding-right: 0.3rem;
+  }
+  .treatment-menu i {
+    font-size: large;
+    color: gray;
+    padding-top: 0;
+  }
+  .treatment-menu ol {
+    background-color: #31373b;
+  }
+  .treatment-menu ol li {
+    padding-left: 0rem;
+  }
   .treatment-menu .treatment-sub-menu {
+    z-index: 1;
     display: none;
     position: absolute;
     height: fit-content;
@@ -897,7 +974,7 @@ input {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
   .treatment-menu .treatment-sub-menu a {
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1.5rem;
     background-color: #c9cbce;
   }
   .treatment-menu .treatment-sub-menu a:hover {
@@ -929,7 +1006,7 @@ input {
     justify-content: right;
   }
   .user-profile .dropdown .user-name {
-    font-family: 'naxa-bold';
+    font-family: "naxa-bold";
     padding-top: 0.5rem;
     color: #0173b2;
     margin-left: 0;
@@ -997,13 +1074,18 @@ input {
   nav {
     margin: auto;
   }
+  nav ul {
+    align-items: center;
+    align-content: center;
+  }
   nav ul li {
     flex: auto;
+    align-items: center;
   }
   nav ul li a {
     background-color: white;
     color: #4d4949;
-    font-family: 'nexa-light';
+    font-family: "nexa-light";
     font-size: 1rem;
     padding: 0.5rem 1rem;
   }
@@ -1113,13 +1195,7 @@ input {
     grid-template-columns: 3fr 5fr;
     grid-template-rows: 7rem 7rem 7rem 7rem 7rem 7rem 7rem;
     grid-column-gap: 0;
-    grid-template-areas: "button1 image"
- "button2 image"
- "button3 image"
- "button4 image"
- "button5 image"
- "button6 image"
- "button7 image";
+    grid-template-areas: "button1 image" "button2 image" "button3 image" "button4 image" "button5 image" "button6 image" "button7 image";
   }
   .detail-block {
     text-align: center;
@@ -1254,10 +1330,16 @@ input {
     grid-column: 1/4;
     grid-row: 4/11;
   }
-  .details, .doctors, .treatment-component, .services-component {
+  .details,
+  .doctors,
+  .treatment-component,
+  .services-component {
     padding: 5rem 5rem;
   }
-  .details h2, .doctors h2, .treatment-component h2, .services-component h2 {
+  .details h2,
+  .doctors h2,
+  .treatment-component h2,
+  .services-component h2 {
     margin-left: 0rem;
   }
 }
