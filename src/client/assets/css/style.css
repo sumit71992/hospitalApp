@@ -1079,8 +1079,8 @@ input {
     /* Change the background color of the dropdown button when the dropdown content is shown */
   }
   .user-profile i {
-    font-size: 1.5rem;
-    padding-left: 0.5rem;
+    font-size: 1.3rem !important;
+    padding-top: 1rem;
   }
   .user-profile .dropdown {
     display: flex;
@@ -1088,10 +1088,7 @@ input {
     justify-content: flex-end;
   }
   .user-profile .dropdown .user-name {
-    font-family: "naxa-bold";
-    padding-top: 0.5rem;
-    color: #0173b2;
-    margin-left: 0;
+    padding-top: 1rem !important;
   }
   .user-profile .dropdown-content {
     display: none;
